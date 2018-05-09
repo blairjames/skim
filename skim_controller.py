@@ -19,7 +19,9 @@ class SkimController:
     This is the Driver Class, it's instantiation in the main() drives execution of the application.
     '''
     def __init__(self):
-        ''' Controller Constructor - Set instance attributes here '''
+        '''
+        Controller Constructor - Set instance attributes here.
+        '''
         try:
             self.processes: int = 256
             self.http_timeout: int = 60
@@ -109,6 +111,7 @@ def main():
         controller.clean_and_print_banner()
         list_of_domains = controller.reader(controller.path_to_urls)
         controller.parallelize(list_of_domains)
+        controller.display_results()
     return True
 
 
