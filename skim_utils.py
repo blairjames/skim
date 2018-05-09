@@ -29,6 +29,19 @@ class SkimUitls:
         except Exception as e:
             print("Error in SkimUitls.lint" + str(e))
 
+    def how_many_domains_in_list(self, path_to_list: str):
+        '''
+        Count the number of lines in the domain list
+        '''
+        try:
+            with open(str(path_to_list), "r") as file:
+                lines = file.readlines()
+                lc = len(lines)
+                return str(lc)
+        except Exception as e:
+            print("Error! in SkimUitls.how_many_domains_in_list: " + str(e))
+
+
     def manage_content(self, url: str, content: str) -> bool:
         '''
         Take content from HTTP response, remove dynamic elements,

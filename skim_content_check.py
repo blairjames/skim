@@ -3,15 +3,11 @@
 import time
 
 import det_gmail
-
-import hashlib
-import requests
-import skim_hasher
-from typing import List, Dict
 import skim_controller
 import skim_utils
 import subprocess
 import toolbag
+from typing import List, Dict
 
 
 class SkimContentCheck:
@@ -97,13 +93,13 @@ class SkimContentCheck:
         except Exception as e:
             print("Error! in content.checker.get_hashes: " + str(e))
 
-    def compare_hashes(self, dict1, dict2):
+    def compare_hashes(self, dict1, dict2) -> List:
         '''
         Use URLs as keys, get corresponding hash from both dictionaries and compare.
         Return List of URL's with non matching hashes.
         '''
         try:
-            lint = skim_controller.SkimController().lint
+            lint = skim_utils.SkimUitls().lint
             mismatches = []
             for key in dict1.keys():
                 hash_latest = dict1.get(key)
@@ -118,10 +114,7 @@ class SkimContentCheck:
                     mismatches.append(str(key))
                 else:
                     continue
-            if (len(mismatches) > 0):
                 return mismatches
-            else:
-                return False
         except Exception as e:
             print("Error! in compare_hashes: " + str(e))
 
@@ -140,7 +133,7 @@ def main():
         print(tb.color("Number of hash results: " + str(seclen), "yellow"))
 
         comp = check.compare_hashes(latest_results, second_last_results)
-        if not comp:
+        if comp.__len__() < 1:
             print(tb.color("\nAll urls have matching hash.\n", "green"))
             exit(0)
         else:
@@ -153,8 +146,8 @@ def main():
                 second, sechash = check.processor(iurl)
                 print("Hash: " + str(sechash))
 
-                diff_file_1 = "/root/scripts/skim/hash_tester1.txt"
-                diff_file_2 = "/root/scripts/skim/hash_tester2.txt"
+                diff_file_1 = "/root/scripts/skim/skim_content.diff"
+                diff_file_2 = "/root/scripts/skim/skim_content2.diff"
 
                 with open(diff_file_1, "w") as filea:
                     filea.write(str(first))

@@ -4,6 +4,7 @@ import time
 
 import skim_content_check
 import skim_controller
+from skim_utils import SkimUitls as utl
 
 
 def main():
@@ -12,18 +13,16 @@ def main():
     '''
     try:
         sleep_time: int = 300
-        go_to_sleep = time.sleep
-        while True:
-            if not skim_controller.main():
-                raise Exception
-            if not skim_content_check.main():
-                raise Exception
-            from skim_utils import SkimUitls as utl
-            utl().lint(("\nNow sleeping for " + str(sleep_time) + " seconds.\n"))
-            go_to_sleep(sleep_time)
-
+        skim_controller.main()
+        print("&*&*&**&*&*&*&*&^^^^^^^^^^ scheduler loop after main before display results")
+        time.sleep(3)
+        skim_controller.SkimController().display_results()
+        skim_content_check.main()
+        utl().lint(("\nNow sleeping for " + str(sleep_time) + " seconds.\n"))
+        time.sleep(sleep_time)
     except Exception as e:
         print("Error! in Skim_systemd.main(): ", str(e))
+        exit(1)
 
 if __name__ == '__main__':
     main()
