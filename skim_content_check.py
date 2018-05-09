@@ -2,7 +2,7 @@
 
 import time
 
-import gmail
+import det_gmail
 import hashlib
 import requests
 import skim_hasher
@@ -194,7 +194,7 @@ def main():
                 if not out:
                     print("\nNo Difference!")
                 else:
-                    gmail.Gmail().sendText("Difference in site content: " + iurl, str(out))
+                    det_gmail.Gmail().sendText("Difference in site content: " + iurl, str(out))
                     print("\nDifference in site content: \n" + str(out))
         return True
 
