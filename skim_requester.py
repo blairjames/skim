@@ -23,7 +23,7 @@ class SkimRequester:
             code = res.status_code
 
             if code == 200:
-                lint(url + " - responding 200OK\n")
+                #lint(url + " - responding 200OK\n")
                 writer(url, "up")
                 manage_content(url, res.text)
                 cms.is_it_drupal(url, res.headers, res.text)
