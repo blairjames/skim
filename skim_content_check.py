@@ -3,9 +3,11 @@
 import time
 
 import det_gmail
+
 import hashlib
 import requests
 import skim_hasher
+from typing import List, Dict
 import skim_controller
 import skim_utils
 import subprocess
@@ -21,13 +23,13 @@ class SkimContentCheck:
     These details are them emailed as an alert for further investigation.
     '''
 
-    def get_hash_results(self, path):
+    def get_hash_results(self, path: str):
         '''
         Read hash file from disk to Dictionary.
         Split the URL and hash_digest using "~" as delimiter, return tuple and map URL to hash in Dict.
         '''
         try:
-            hash_dict = {}
+            hash_dict: Dict = {}
             print("get_hash_results file to open: " + str(path))
             path = str(path.rstrip("\n"))
             with open(path, "r") as file:
@@ -39,21 +41,27 @@ class SkimContentCheck:
         except Exception as e:
             print("get_hash_results" + str(e))
 
-    def get_dir_name(self, which_results):
+    def get_dir_name_cmd_builder(self, which_results: str):
         '''
-        Return the name of the latest directory or the n-1 directory according to parameter.
+        Return a command string to be run by "get_dir_name" according to the "which_results" parameter.
         '''
         try:
-            basepath = skim_controller.SkimController().basepath
-            lint = skim_utils.SkimUitls().lint
+            basepath: str = skim_controller.SkimController().basepath
             cmd1 = "ls -td " + str(basepath) + "/*/ | head -n 1"
             cmd2 = "ls -td " + str(basepath) + "/*/ | head -n 2 | tail -n 1"
             if which_results == "most_recent":
-                cmd = str(cmd1)
+                return str(cmd1)
             elif which_results == "second":
-                cmd = str(cmd2)
-            else:
-                raise IOError
+                return str(cmd2)
+        except Exception as e:
+            print("Error! in SkimContentCheck.get_dir_name_cmd_builder: " + str(e))
+
+    def get_dir_name(self, cmd):
+        '''
+        Return the name of the directory after running the "cmd" parameter.
+        '''
+        try:
+            lint = skim_utils.SkimUitls().lint
             lint("CMD for file name: " + str(cmd))
             dir_name = subprocess.run([str(cmd)], stdout = subprocess.PIPE, shell = True)
             if dir_name.returncode != 0:
@@ -90,7 +98,12 @@ class SkimContentCheck:
             print("Error! in content.checker.get_hashes: " + str(e))
 
     def compare_hashes(self, dict1, dict2):
+        '''
+        Use URLs as keys, get corresponding hash from both dictionaries and compare.
+        Return List of URL's with non matching hashes.
+        '''
         try:
+            lint = skim_controller.SkimController().lint
             mismatches = []
             for key in dict1.keys():
                 hash_latest = dict1.get(key)
@@ -98,10 +111,10 @@ class SkimContentCheck:
                 if (not hash_latest) or (not hash_second):
                     continue
                 if (hash_latest != hash_second):
-                    print("ALERT!! - Content has changed on: " + str(key) + "\n")
-                    print(str(key))
-                    print(str(hash_latest))
-                    print(str(hash_second))
+                    lint("ALERT!! - Content has changed on: " + str(key) + "\n")
+                    lint(str(key))
+                    lint(str(hash_latest))
+                    lint(str(hash_second))
                     mismatches.append(str(key))
                 else:
                     continue
@@ -112,86 +125,23 @@ class SkimContentCheck:
         except Exception as e:
             print("Error! in compare_hashes: " + str(e))
 
-    def get_response(self, url):
-        try:
-            header = toolbag.Toolbag().get_headers
-            res = requests.get(str(url), headers=header("ie"))
-            cont = res.text
-            cont = str(cont)
-            return cont
-        except Exception as e:
-            print("Error in content_checker.get_response: " + str(e))
-
-
-
-
-    #use the hasher one
-    def checker(self, line):
-        try:
-            dynamic_content = skim_hasher.Hasher().dynamic_content
-            line = str(line)
-            for each in dynamic_content:
-                if str(each) in str(line):
-                    return True
-            return False
-        except Exception as e:
-            print("Error! in content.checker.checker: ", str(e))
-
-
-
-    def strip_digest(self, content):
-        try:
-            modded = []
-            content = str(content)
-            for line in content.splitlines():
-                if not self.checker(line):
-                    modded.append(str(line))
-            if len(modded) > 0:
-                return "\n".join(modded)
-            else:
-                return False
-        except Exception as e:
-            print("Error! in content.checker.strip_digest: " + str(e))
-
-    def hashit(self, content):
-        try:
-            if not content:
-                raise Exception
-            encoded = content.encode("utf-8")
-            md5 = hashlib.md5(encoded)
-            md5d = md5.hexdigest()
-            return str(md5d)
-        except Exception as e:
-            print("Error! in content_checker.hashit(): " + str(e))
-
-    def processor(self, url):
-        try:
-            cont = self.get_response(str(url))
-            processed = self.strip_digest(cont)
-            hash = self.hashit(processed)
-            return processed, hash
-        except Exception as e:
-            print("Error! in content.checker.processor: " + str(e))
-
 def main():
     try:
         check = SkimContentCheck()
-        check.tb.clear_screen()
-
-        last_results_path = check.get_hash_file(check.get_file_path(check.basepath, "most_recent"))
-        second_last_results_path = check.get_hash_file(check.get_file_path(check.basepath, "second"))
-
+        tb = toolbag.Toolbag()
+        last_results_path = check.get_hash_file_name(check.get_dir_name("most_recent"))
+        second_last_results_path = check.get_hash_file_name(check.get_dir_name("second"))
         latest_results = check.get_hash_results(last_results_path)
         len = latest_results.__len__()
-        print(check.tb.color("Number of hash results: " + str(len), "yellow"))
+        print(tb.color("Number of hash results: " + str(len), "yellow"))
 
         second_last_results = check.get_hash_results(second_last_results_path)
         seclen = second_last_results.__len__()
-        print(check.tb.color("Number of hash results: " + str(seclen), "yellow"))
+        print(tb.color("Number of hash results: " + str(seclen), "yellow"))
 
         comp = check.compare_hashes(latest_results, second_last_results)
         if not comp:
-            print(check.tb.color("\nAll urls have matching hash.\n", "green"))
+            print(tb.color("\nAll urls have matching hash.\n", "green"))
             exit(0)
         else:
             for url in comp:
