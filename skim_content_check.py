@@ -2,7 +2,7 @@
 
 import time
 
-import gmail
+import det_gmail
 import hashlib
 import requests
 import skim_hasher
