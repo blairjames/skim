@@ -6,18 +6,26 @@ import det_gmail
 import hashlib
 import requests
 import skim_hasher
+import skim_controller
+import skim_utils
 import subprocess
 import toolbag
 
 
 class SkimContentCheck:
-
-    def __init__(self):
-        self.dynamic_content = skim_hasher.Hasher().dynamic_content
-        self.tb = toolbag.Toolbag()
-        self.basepath = "/root/scripts/skim/output"
+    '''
+    Once all sites have been processed, we take the current list of content hashes
+    and compare them to the relevant hashes from the last pass to detect any changes.
+    If the hashes of a site do not match we take the current content and compare to
+    the content from the last pass to indicate exactly what was modified.
+    These details are them emailed as an alert for further investigation.
+    '''
 
     def get_hash_results(self, path):
+        '''
+        Read hash file from disk to Dictionary.
+        Split the URL and hash_digest using "~" as delimiter, return tuple and map URL to hash in Dict.
+        '''
         try:
             hash_dict = {}
             print("get_hash_results file to open: " + str(path))
@@ -31,8 +39,10 @@ class SkimContentCheck:
         except Exception as e:
             print("get_hash_results" + str(e))
 
-    def get_file_path(self, basepath, which_results):
+    def get_file_path(self, which_results):
         try:
+            basepath = skim_controller.SkimController().basepath
+            lint = skim_utils.SkimUitls().lint
             cmd1 = "ls -td " + str(basepath) + "/*/ | head -n 1"
             cmd2 = "ls -td " + str(basepath) + "/*/ | head -n 2 | tail -n 1"
             if which_results == "most_recent":
@@ -41,14 +51,14 @@ class SkimContentCheck:
                 cmd = str(cmd2)
             else:
                 raise IOError
-            print("CMD for file name: " + str(cmd))
+            lint("CMD for file name: " + str(cmd))
             dir_name = subprocess.run([str(cmd)], stdout = subprocess.PIPE, shell = True)
             if dir_name.returncode != 0:
                 raise IOError
             dir_out = dir_name.stdout
             dir_out = dir_out.decode("utf-8")
             dir_out = dir_out.rstrip('\n')
-            print(str(dir_out))
+            lint(str(dir_out))
             return str(dir_out)
         except IOError as i:
             print("get_file_path_subprocess IOERROR" + str(i))
@@ -57,14 +67,15 @@ class SkimContentCheck:
 
     def get_hash_file(self, dir_out):
         try:
-            file_cmd = "ls -td " + str(dir_out) + "*hash*"
+            color = toolbag.Toolbag().color
+            file_cmd = ("ls -td " + str(dir_out) + "*hash*")
             print("File cmd: " + str(file_cmd))
             file_name = subprocess.run([str(file_cmd)], stdout = subprocess.PIPE, shell = True)
             if file_name.returncode != 0:
                 raise IOError
             file_name_out = file_name.stdout
             file_name_out = file_name_out.decode("utf-8")
-            print(self.tb.color("File name: " + str(file_name_out), "yellow"))
+            print(color("File name: " + str(file_name_out), "yellow"))
             return str(file_name_out)
         except IOError as i:
             print("Error! in content.checker.get_hashes: IOERROR subprocess: " + str(i))
@@ -96,23 +107,30 @@ class SkimContentCheck:
 
     def get_response(self, url):
         try:
-            res = requests.get(str(url), headers=self.tb.get_headers("ie"))
+            header = toolbag.Toolbag().get_headers
+            res = requests.get(str(url), headers=header("ie"))
             cont = res.text
             cont = str(cont)
             return cont
         except Exception as e:
             print("Error in content_checker.get_response: " + str(e))
 
+
+
+
+    #use the hasher one
     def checker(self, line):
         try:
+            dynamic_content = skim_hasher.Hasher().dynamic_content
             line = str(line)
-            dc = self.dynamic_content
-            for el in dc:
-                if str(el) in str(line):
+            for each in dynamic_content:
+                if str(each) in str(line):
                     return True
             return False
         except Exception as e:
             print("Error! in content.checker.checker: ", str(e))
+
+
 
     def strip_digest(self, content):
         try:
