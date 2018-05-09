@@ -4,7 +4,11 @@ import hashlib
 
 
 class Hasher():
+    '''
+    Hasher takes responsibility for filtering and hashing content.
 
+    Dynamic_content is the "List" of dynamic elements that cause false positive alerts.
+    '''
     def __init__(self):
         self.dynamic_content = [
 
@@ -76,15 +80,26 @@ class Hasher():
             "class=\"hidden\">Version 1.0.2.0 ("
         ]
 
-    def checker(self, line):
-        line = str(line)
-        cont = self.dynamic_content
-        for el in cont:
-            if str(el) in line:
-                return True
-        return False
+    def checker(self, line: str) -> bool:
+        '''
+        Checks each element of the dynamic_content "List" against the "line" parameter and return bool
+        '''
+        try:
+            line = str(line)
+            cont = self.dynamic_content
+            for el in cont:
+                if str(el) in line:
+                    return True
+            return False
+        except Exception as e:
+            print("Error! in Hasher.checker: " + str(e))
 
-    def strip_digest(self, content):
+
+    def strip_digest(self, content) -> str:
+        '''
+        Filter out content that is always changing to stop False positives.
+        If line of content is not flagged as True (in dynamic_content List) by "self.checker"
+        '''
         try:
             modded = []
             content = str(content)
@@ -97,6 +112,9 @@ class Hasher():
             print("Error! in Hasher: " + str(e))
 
     def hashit(self, content):
+        '''
+        Once content is filtered hash it with md5
+        '''
         try:
             if not content:
                 raise Exception
