@@ -112,6 +112,7 @@ def main():
         list_of_domains = controller.reader(controller.path_to_urls)
         controller.parallelize(list_of_domains)
         controller.display_results()
+        controller.lint("\n\n***************************** Completed Sucessfully *****************************\n\n")
     return True
 
 
