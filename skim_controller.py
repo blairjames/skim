@@ -16,7 +16,9 @@ import toolbag
 
 
 class SkimController:
-
+    '''
+    This is the Driver Class, it's instantiation in the main() drives execution of the application.
+    '''
     def __init__(self):
         ''' Controller Constructor - Set instance attributes here '''
         try:
