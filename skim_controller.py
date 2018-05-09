@@ -7,7 +7,6 @@ import random
 import skim_cleaner
 import skim_conf
 import skim_hasher
-import skim_preparation
 import skim_reader_io
 import skim_requester
 import skim_utils
@@ -34,7 +33,6 @@ class SkimController:
             self.conf = skim_conf.Skim_conf()
             self.requester = skim_requester.SkimRequester()
             self.hasher = skim_hasher.Hasher()
-            self.prep = skim_preparation.Skim_preparation()
             self.utils = skim_utils.SkimUitls()
             self.reader = skim_reader_io.SkimReader().fetch_domain_list
             self.lint = self.utils.lint

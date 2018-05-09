@@ -5,7 +5,9 @@ import toolbag
 
 
 class Skim_conf:
-
+    '''
+    Configuration Items
+    '''
     def show_banner(self):
         '''
         Print the banner
