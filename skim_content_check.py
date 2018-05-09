@@ -39,7 +39,10 @@ class SkimContentCheck:
         except Exception as e:
             print("get_hash_results" + str(e))
 
-    def get_file_path(self, which_results):
+    def get_dir_name(self, which_results):
+        '''
+        Return the name of the latest directory or the n-1 directory according to parameter.
+        '''
         try:
             basepath = skim_controller.SkimController().basepath
             lint = skim_utils.SkimUitls().lint
@@ -65,17 +68,21 @@ class SkimContentCheck:
         except Exception as e:
             print("get_file_path" + str(e))
 
-    def get_hash_file(self, dir_out):
+    def get_hash_file_name(self, dir_name):
+        '''
+        Return the name of the hash file in the directory calculated by get_dir_name
+        '''
         try:
+            lint = skim_utils.SkimUitls().lint
             color = toolbag.Toolbag().color
-            file_cmd = ("ls -td " + str(dir_out) + "*hash*")
-            print("File cmd: " + str(file_cmd))
+            file_cmd = ("ls -td " + str(dir_name) + "*hash*")
+            lint("File cmd: " + str(file_cmd))
             file_name = subprocess.run([str(file_cmd)], stdout = subprocess.PIPE, shell = True)
             if file_name.returncode != 0:
                 raise IOError
             file_name_out = file_name.stdout
             file_name_out = file_name_out.decode("utf-8")
-            print(color("File name: " + str(file_name_out), "yellow"))
+            lint(color("File name: " + str(file_name_out), "yellow"))
             return str(file_name_out)
         except IOError as i:
             print("Error! in content.checker.get_hashes: IOERROR subprocess: " + str(i))

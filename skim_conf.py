@@ -4,6 +4,7 @@ import time
 import toolbag
 
 
+
 class Skim_conf:
     '''
     Configuration Items
@@ -22,7 +23,13 @@ class Skim_conf:
         print(tb.color("         ███   ███▐██▄   ███  ███   ███   ███ ", color))
         print(tb.color("   ▄█    ███   ███ ▀███▄ ███  ███   ███   ███ ", color))
         print(tb.color(" ▄████████▀    ███   ▀█▀ █▀    ▀█   ███   █▀ ", color))
-        time.sleep(1)
+        from skim_controller import SkimController as ctrl
+        num_domains: int = ctrl().num_domains
+        print("\n\nTotal number of domains to be traversed: " + str(num_domains) + "\n")
+        print("\n\nOnly domains which are not responding 200OK are printed.\n")
+        time.sleep(1.5)
+
+
 
     def whitelist_domains(self):
         '''

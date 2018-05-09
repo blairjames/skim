@@ -40,9 +40,9 @@ class SkimUitls:
             modded = h.strip_digest(str(content))
             hashed = h.hashit(modded)
             writer("\n\n$$$$$$$$$$~~~~~~~~~~~~~$$$$$$$$$$\n" + str(url)
-                        + "\n$$$$$$$$$$~~~~~~~~~~~~~$$$$$$$$$$\n" + str(modded)
-                        + "\n%%%%%%%%%%%%%%%%%%~~~~~~~~~~~~~~~~~~~~%%%%%%%%%%%%%%%\n\n",
-                            "content")
+                   + "\n$$$$$$$$$$~~~~~~~~~~~~~$$$$$$$$$$\n" + str(modded)
+                   + "\n%%%%%%%%%%%%~~~~~~~~~~~~~~~~~~~~%%%%%%%%%%%%\n\n",
+                        "content")
             writer(url + "~" + str(hashed), "hashes")
             return True
         except Exception as e:
