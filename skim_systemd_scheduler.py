@@ -14,8 +14,6 @@ def main():
     try:
         sleep_time: int = 300
         skim_controller.main()
-        print("&*&*&**&*&*&*&*&^^^^^^^^^^ scheduler loop after main before display results")
-        time.sleep(3)
         skim_controller.SkimController().display_results()
         skim_content_check.main()
         utl().lint(("\nNow sleeping for " + str(sleep_time) + " seconds.\n"))

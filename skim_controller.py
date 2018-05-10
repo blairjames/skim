@@ -6,7 +6,6 @@ import multiprocessing
 import random
 import skim_cleaner
 import skim_conf
-import skim_hasher
 import skim_reader_io
 import skim_requester
 import skim_utils
@@ -67,9 +66,6 @@ class SkimController:
         try:
             with multiprocessing.Pool(int(self.processes), maxtasksperchild=10) as pool:
                 pool.map(self.director, clean_master_list)
-
-                print("\n\n##### after Map in para")
-                time.sleep(3)
             return True
         except AssertionError as i:
             print("Error!! in SkimController.parallelize multi processing map: " + str(i))

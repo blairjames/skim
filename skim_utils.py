@@ -41,7 +41,6 @@ class SkimUitls:
         except Exception as e:
             print("Error! in SkimUitls.how_many_domains_in_list: " + str(e))
 
-
     def manage_content(self, url: str, content: str) -> bool:
         '''
         Take content from HTTP response, remove dynamic elements,
@@ -52,10 +51,10 @@ class SkimUitls:
             h = skim_hasher.Hasher()
             modded = h.strip_digest(str(content))
             hashed = h.hashit(modded)
-            writer("\n\n$$$$$$$$$$~~~~~~~~~~~~~$$$$$$$$$$\n" + str(url)
-                   + "\n$$$$$$$$$$~~~~~~~~~~~~~$$$$$$$$$$\n" + str(modded)
-                   + "\n%%%%%%%%%%%%~~~~~~~~~~~~~~~~~~~~%%%%%%%%%%%%\n\n",
-                        "content")
+            writer("\n\n$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$" + str(url) + "$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$\n"
+                   + str(modded) +
+                   "\n%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%" + str(url) + "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%"
+                   ,"content")
             writer(url + "~" + str(hashed), "hashes")
             return True
         except Exception as e:

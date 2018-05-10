@@ -2,8 +2,6 @@
 
 import time
 import toolbag
-import skim_controller as ctrl
-from skim_utils import SkimUitls as util
 
 
 class Skim_conf:
