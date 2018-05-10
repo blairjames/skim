@@ -21,12 +21,12 @@ class SkimController:
         Controller Constructor - Set instance attributes here.
         '''
         try:
-            self.processes: int = 256
+            self.processes: int = 512
             self.http_timeout: int = 60
             self.staggering: int = 30
-            self.num_domains: int = 0
             self.basepath:str = "/root/scripts/skim/output/"
             self.path_to_urls: str = "/root/scripts/skim/master_list_external_domains.txt"
+            self.num_domains: int = skim_utils.SkimUitls().how_many_domains_in_list(self.path_to_urls)
             self.logfile: str = (self.basepath + "log_sites.txt")
         except Exception as e:
             print("Error! in SkimController.constructor: " + str(e))
@@ -86,10 +86,13 @@ class SkimController:
         '''
         Display the results and move the files into their own folder
         '''
-        clean = skim_cleaner.SkimCleaner()
-        clean.print_counts()
-        clean.move_files("/root/scripts/skim/output/")
-        return True
+        try:
+            clean = skim_cleaner.SkimCleaner()
+            clean.print_counts()
+            clean.move_files("/root/scripts/skim/output/")
+            return True
+        except Exception as e:
+            print("Error! in SkimController.display_results: " + str(e))
 
 def main():
     '''
@@ -105,6 +108,7 @@ def main():
         controller.clean_and_print_banner()
         list_of_domains = reader(controller.path_to_urls)
         controller.parallelize(list_of_domains)
+        controller.display_results()
 
 if __name__ == '__main__':
     main()

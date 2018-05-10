@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import time
-
 import det_gmail
 import skim_controller
 import skim_utils
@@ -43,8 +41,8 @@ class SkimContentCheck:
         '''
         try:
             basepath: str = skim_controller.SkimController().basepath
-            cmd1 = "ls -td " + str(basepath) + "*/ | head -n 1"
-            cmd2 = "ls -td " + str(basepath) + "*/ | head -n 2 | tail -n 1"
+            cmd1 = "ls -td " + str(basepath) + "201* | head -n 1"
+            cmd2 = "ls -td " + str(basepath) + "201* | head -n 2 | tail -n 1"
             if which_results == "most_recent":
                 return str(cmd1)
             elif which_results == "second":
@@ -79,7 +77,7 @@ class SkimContentCheck:
         try:
             lint = skim_utils.SkimUitls().lint
             color = toolbag.Toolbag().color
-            file_cmd = ("ls -td " + str(dir_name) + "*" + str(file_to_return) + "*")
+            file_cmd = ("ls -td " + str(dir_name) + "/*" + str(file_to_return) + "*")
             lint("File cmd: " + str(file_cmd))
             file_name = subprocess.run([str(file_cmd)], stdout = subprocess.PIPE, shell = True)
             if file_name.returncode != 0:
@@ -150,9 +148,9 @@ class SkimContentCheck:
             print("Error! in SkimContentCheck.get_content: " + str(e))
 
 
-
 def main():
     try:
+        lint = skim_utils.SkimUitls().lint
         check = SkimContentCheck()
         tb = toolbag.Toolbag()
 
@@ -171,18 +169,18 @@ def main():
         latest_hash_results = check.get_hash_results(last_hash_results_file_name)
         second_last_hash_results = check.get_hash_results(second_last_hash_results_file_name)
 
-        print("\nlast_hash_results_file_name: " + str(last_hash_results_file_name) +
+        lint("\nlast_hash_results_file_name: " + str(last_hash_results_file_name) +
               " Number of results: " + str(len(latest_hash_results)))
 
-        print("\nsecond_last_hash_results_file_name: " + str(second_last_hash_results_file_name) +
+        lint("\nsecond_last_hash_results_file_name: " + str(second_last_hash_results_file_name) +
               " Number of results: " + str(len(second_last_hash_results)))
 
-        print("\nlast_content_file_name: " + str(last_content_file_name))
-        print("\nsecond_last_content_file_name: " + str(second_last_content_file_name))
+        lint("\nlast_content_file_name: " + str(last_content_file_name))
+        lint("\nsecond_last_content_file_name: " + str(second_last_content_file_name))
 
         mismatches = check.compare_hashes(latest_hash_results, second_last_hash_results)
-        if mismatches.__len__() < 1:
-            print(tb.color("\nAll urls have matching hash.\n", "green"))
+        if not mismatches:
+            lint(tb.color("\nAll urls have matching hash.\n", "green"))
             exit(0)
         else:
             for domain in mismatches:
@@ -205,11 +203,11 @@ def main():
                 out = out.decode()
 
                 if not out:
-                    print("\nNo Difference!")
+                    lint("\nNo Difference!")
                 else:
-                    message = "Difference in site content: " + str(domain), str(out)
-                    det_gmail.Gmail().sendText("Content Warning", message)
-                    print(message)
+                    message = "Difference in site content: " + str(domain) + "\n" + str(out)
+                    det_gmail.Gmail().sendText("Content Modification Warning.", message)
+                    lint(message)
 
 
     except Exception as e:

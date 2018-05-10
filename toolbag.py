@@ -174,7 +174,6 @@ class Toolbag:
                 return True
             else:
                 cmd = ("/bin/mkdir " + str(dir))
-                cmd = shlex.quote(cmd)
                 mkdir = subprocess.run([cmd], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                        stderr=subprocess.PIPE, shell=True)
                 if "Permission" in str(mkdir.stderr):
@@ -247,12 +246,6 @@ class Toolbag:
                 time.sleep(2)
         except Exception as e:
             print("Error in toolbag.sd_notify " + str(e))
-
-    def perf(self):
-        try:
-            return time.perf_counter()
-        except Exception as e:
-            print("Error! in toolbag.perf: " + str(e))
 
 
 

@@ -31,11 +31,11 @@ class SkimReader:
                 url_file.close()
             col = toolbag.Toolbag().color
             lint(col("\nNumber of domains before whitelisting: " + str(len(url_list)), "yellow"))
-            time.sleep(1.5)
+            time.sleep(1)
             clean_list = self.whitelist_sieve(url_list)
             clean_list = shuf(clean_list)
-            lint(col("Number of domains after whitelisting:  " + str(len(clean_list)), "yellow") + "\n\n")
-            time.sleep(1.5)
+            lint(col("Number of domains after  whitelisting:  " + str(len(clean_list)), "yellow") + "\n\n")
+            time.sleep(1)
             return clean_list
         except Exception as e:
             print("Error! in SkimController.fetch_domain_list: " + str(e))

@@ -4,6 +4,7 @@ import subprocess
 import toolbag
 import skim_controller
 import skim_utils
+import os
 
 
 class SkimCleaner:
@@ -35,7 +36,10 @@ class SkimCleaner:
         '''
         try:
             basepath: str = skim_controller.SkimController().basepath
-            with open(str(basepath) + str(filename), "r") as file:
+            fullpath = str(basepath) + str(filename)
+            if not os.path.isfile(fullpath):
+                return "None discovered."
+            with open(fullpath, "r") as file:
                 lines = file.readlines()
                 wc = len(lines)
                 return str(wc)
