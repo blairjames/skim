@@ -14,9 +14,9 @@ from typing import List, Dict
 
 
 class Toolbag:
-
-    def __init__(self):
-        self.colors: List = ['red', 'green', 'yellow', 'magenta', 'cyan']
+    '''
+    Utilities class for commonly used tools
+    '''
 
     def clear_screen(self):
         try:
@@ -135,9 +135,10 @@ class Toolbag:
     def color(self, text: str, color: str) -> str:
         try:
             c = termcolor
+            colors = ['red', 'green', 'yellow', 'magenta', 'cyan']
             if color == "random":
-                rand = random.randint(0, int(len(self.colors)-1))
-                rnd_color = str(self.colors.__getitem__(int(rand)))
+                rand = random.randint(0, int(len(colors)-1))
+                rnd_color = str(colors.__getitem__(int(rand)))
                 return c.colored(str(text), str(rnd_color))
             else:
                 return c.colored(str(text), str(color))

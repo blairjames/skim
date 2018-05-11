@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import det_gmail
-import skim_controller
 import skim_utils
 import subprocess
 import toolbag
@@ -40,6 +38,7 @@ class SkimContentCheck:
         Return a command string to be run by "get_dir_name" according to the "which_results" parameter.
         '''
         try:
+            import skim_controller
             basepath: str = skim_controller.SkimController().basepath
             cmd1 = "ls -td " + str(basepath) + "201* | head -n 1"
             cmd2 = "ls -td " + str(basepath) + "201* | head -n 2 | tail -n 1"
@@ -118,6 +117,9 @@ class SkimContentCheck:
             print("Error! in compare_hashes: " + str(e))
 
     def get_content(self, file_name: str) -> List:
+        '''
+        Read content file into List
+        '''
         try:
             content = []
             apd = content.append
@@ -130,6 +132,9 @@ class SkimContentCheck:
             print("Error! in SkimContentCheck.get_content: " + str(e))
 
     def search_content(self, domain: str, content_list: List) -> str:
+        '''
+        Find and retrieve domain specific content from List
+        '''
         try:
             output = []
             apd = output.append
@@ -139,16 +144,22 @@ class SkimContentCheck:
                ("%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%" + str(domain) + "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%")
 
             i = int(index_start)
+            print("Index Start: " + str(index_start))
+            print("Index end: " + str(index_end))
             while i < int(index_end):
                 apd(content_list[i])
                 i += 1
             output = "".join(output).rstrip("\n").lstrip(" ")
+            print(str(output))
             return str(output)
         except Exception as e:
             print("Error! in SkimContentCheck.get_content: " + str(e))
 
 
 def main():
+    '''
+    Content checking execution flow is driven from here.
+    '''
     try:
         lint = skim_utils.SkimUitls().lint
         check = SkimContentCheck()
@@ -205,6 +216,7 @@ def main():
                 if not out:
                     lint("\nNo Difference!")
                 else:
+                    import det_gmail
                     message = "Difference in site content: " + str(domain) + "\n" + str(out)
                     det_gmail.Gmail().sendText("Content Modification Warning.", message)
                     lint(message)
