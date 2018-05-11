@@ -26,10 +26,10 @@ class SkimContentCheck:
             path = str(path.rstrip("\n"))
             with open(path, "r") as file:
                 for line in file.readlines():
-                    print("\n\nSplitting: " + str(line))
+                    print("Splitting: " + str(line))
                     site, content_hash = line.split("~")
                     hash_dict[str(site)] = str(content_hash)
-                    print("\n\nAfter split into dict: "  + str(site) + " " + str(content_hash))
+                    print("After split into dict: "  + str(site) + " " + str(content_hash))
             file.close()
             return hash_dict
         except Exception as e:
@@ -128,7 +128,7 @@ class SkimContentCheck:
         try:
             content = []
             apd = content.append
-            with open(file_name, "r") as file:
+            with open(file_name.rstrip("\n"), "r") as file:
                 for line in file.readlines():
                     apd(line)
                 file.close()
@@ -143,10 +143,20 @@ class SkimContentCheck:
         try:
             output = []
             apd = output.append
-            index_start = content_list.index\
-               ("$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$" + str(domain) + "$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$")
-            index_end = content_list.index\
-               ("%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%" + str(domain) + "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%")
+            print("\nLooking for: " + str(domain) + "\n\n")
+            starter = ("$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$" + str(domain) +
+                       "$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$").rstrip("\n").rstrip(" ")
+            for x in content_list:
+                #print(x)
+                if starter in x:
+                    index_start = content_list.index(x)
+                    print("Index start: " + str(x))
+                else:
+                    print("not found...\n")
+
+            ender = ("%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%" + str(domain) +
+                     "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%").rstrip("\n").rstrip(" ")
+            index_end = content_list.index(str(ender))
 
             i = int(index_start)
             print("Index Start: " + str(index_start))
@@ -194,7 +204,7 @@ def main():
         lint("\nsecond_last_content_file_name: " + str(second_last_content_file_name))
 
         mismatches = check.compare_hashes(latest_hash_results, second_last_hash_results)
-        if mismatches[0] == "empty":
+        if not mismatches:
             lint("\nAll urls have matching hash.\n")
             exit(0)
         else:
@@ -213,10 +223,10 @@ def main():
                 with open(diff_file_2, "w") as fileb:
                     fileb.write(str(cont_second))
 
-                diff = subprocess.run(["/usr/bin/diff", diff_file_1, diff_file_2], stdout=subprocess.PIPE)
+                diff = subprocess.run(["/usr/bin/diff " + str(diff_file_1) + " " + str(diff_file_2)],
+                                      stdout=subprocess.PIPE, shell=True)
                 out = diff.stdout
                 out = out.decode()
-
                 if not out:
                     lint("\nNo Difference!")
                 else:

@@ -77,9 +77,11 @@ class SkimUitls:
             h = skim_hasher.Hasher()
             modded = h.strip_digest(str(content))
             hashed = h.hashit(modded)
-            writer("\n\n$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$" + str(url) + "$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$\n"
+            writer("$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$" + str(url) +
+                   "$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$".rstrip("\n").rstrip(" ")
                    + str(modded) +
-                   "\n%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%" + str(url) + "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%"
+                   "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%" + str(url) +
+                   "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%".rstrip("\n").rstrip(" ")
                    ,"content")
             writer(url + "~" + str(hashed), "hashes")
             return True
