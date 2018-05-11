@@ -1,7 +1,5 @@
 #!/bin/python3
 
-import hashlib
-
 
 class Hasher():
     '''
@@ -116,6 +114,7 @@ class Hasher():
         Once content is filtered hash it with md5
         '''
         try:
+            import hashlib
             if not content:
                 raise Exception
             encoded = content.encode("utf-8")

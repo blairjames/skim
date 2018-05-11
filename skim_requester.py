@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 
 import requests
-import skim_cms_filter
-import skim_writer_io
-import skim_controller
+
 import skim_utils
-import toolbag
+import skim_writer_io
 
 
 class SkimRequester:
 
     def send_request(self, url):
         try:
+            import toolbag
+            import skim_cms_filter
+            import skim_controller
             headers = toolbag.Toolbag().get_headers("ie")
             writer = skim_writer_io.Skim_writer_io().writer
             http_timeout = skim_controller.SkimController().http_timeout

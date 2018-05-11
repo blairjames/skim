@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
 
-import subprocess
-import toolbag
-import skim_controller
-import skim_utils
-import os
-
 
 class SkimCleaner:
 
@@ -14,11 +8,14 @@ class SkimCleaner:
         Move files from each pass into their own timestamp directory.
         '''
         try:
+            import subprocess
+            import toolbag
+            tb = toolbag.Toolbag()
             path = str(path)
-            ts = toolbag.Toolbag().create_timestamp()
+            ts = tb.create_timestamp()
             ts = str(ts)
             destpath = (path + ts)
-            if toolbag.Toolbag().check_dir_exists(destpath):
+            if tb.check_dir_exists(destpath):
                 mv = subprocess.run(["/bin/mv " + path + "/*.txt " + destpath + "/"],
                             stdout=subprocess.PIPE, shell=True)
                 if mv.returncode != 0:
@@ -35,6 +32,8 @@ class SkimCleaner:
         Return number of lines in filename
         '''
         try:
+            import skim_controller
+            import os
             basepath: str = skim_controller.SkimController().basepath
             fullpath = str(basepath) + str(filename)
             if not os.path.isfile(fullpath):
@@ -51,6 +50,8 @@ class SkimCleaner:
         Print the number of sites in each category
         '''
         try:
+            import skim_controller
+            import skim_utils
             num_domains: int = skim_controller.SkimController().num_domains
             lint = skim_utils.SkimUitls().lint
             lint("\n***************************************************************")

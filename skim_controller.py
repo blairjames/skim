@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 
-import time
-
-import multiprocessing
-import random
-import skim_cleaner
-import skim_conf
-import skim_reader_io
-import skim_requester
 import skim_utils
-import toolbag
 
 
 class SkimController:
@@ -36,6 +27,8 @@ class SkimController:
         clean up and print the banner.
         '''
         try:
+            import toolbag
+            import skim_conf
             utils = skim_utils.SkimUitls()
             conf = skim_conf.Skim_conf()
             tb = toolbag.Toolbag()
@@ -64,6 +57,7 @@ class SkimController:
         Generate a Pool of processes, then map the elements in the domain list to the director function
         '''
         try:
+            import multiprocessing
             with multiprocessing.Pool(int(self.processes), maxtasksperchild=10) as pool:
                 pool.map(self.director, clean_master_list)
             return True
@@ -75,6 +69,9 @@ class SkimController:
         Enforce staggering to avoid link flooding, then send to http requester.
         '''
         try:
+            import random
+            import time
+            import skim_requester
             requester = skim_requester.SkimRequester()
             wait = random.randint(0, int(self.staggering))
             time.sleep(int(wait))
@@ -87,6 +84,7 @@ class SkimController:
         Display the results and move the files into their own folder
         '''
         try:
+            import skim_cleaner
             clean = skim_cleaner.SkimCleaner()
             clean.print_counts()
             clean.move_files("/root/scripts/skim/output/")
@@ -104,6 +102,7 @@ def main():
         lint("\nError! - Check internet connectivity\n")
         exit(1)
     else:
+        import skim_reader_io
         reader = skim_reader_io.SkimReader().fetch_domain_list
         controller.clean_and_print_banner()
         list_of_domains = reader(controller.path_to_urls)

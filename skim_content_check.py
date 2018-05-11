@@ -2,7 +2,6 @@
 
 import skim_utils
 import subprocess
-import toolbag
 from typing import List, Dict
 
 
@@ -21,13 +20,16 @@ class SkimContentCheck:
         Split the URL and hash_digest using "~" as delimiter, return tuple and map URL to hash in Dict.
         '''
         try:
+            print("\n\nIn get hash results")
             hash_dict: Dict = {}
-            print("get_hash_results file to open: " + str(path))
+            print("\n\nget_hash_results file to open: " + str(path))
             path = str(path.rstrip("\n"))
             with open(path, "r") as file:
                 for line in file.readlines():
+                    print("\n\nSplitting: " + str(line))
                     site, content_hash = line.split("~")
                     hash_dict[str(site)] = str(content_hash)
+                    print("\n\nAfter split into dict: "  + str(site) + " " + str(content_hash))
             file.close()
             return hash_dict
         except Exception as e:
@@ -75,7 +77,6 @@ class SkimContentCheck:
         '''
         try:
             lint = skim_utils.SkimUitls().lint
-            color = toolbag.Toolbag().color
             file_cmd = ("ls -td " + str(dir_name) + "/*" + str(file_to_return) + "*")
             lint("File cmd: " + str(file_cmd))
             file_name = subprocess.run([str(file_cmd)], stdout = subprocess.PIPE, shell = True)
@@ -83,7 +84,7 @@ class SkimContentCheck:
                 raise IOError
             file_name_out = file_name.stdout
             file_name_out = file_name_out.decode("utf-8")
-            lint(color("File name: " + str(file_name_out), "yellow"))
+            lint("File name: " + str(file_name_out))
             return str(file_name_out)
         except IOError as i:
             print("Error! in content.checker.get_hashes: IOERROR subprocess: " + str(i))
@@ -102,6 +103,8 @@ class SkimContentCheck:
             for key in dict1.keys():
                 hash_latest = dict1.get(key)
                 hash_second = dict2.get(key)
+                lint("Latest Hash: " + str(hash_latest))
+                lint("Second Hash: " + str(hash_second))
                 if (not hash_latest) or (not hash_second):
                     continue
                 if (hash_latest != hash_second):
@@ -163,7 +166,6 @@ def main():
     try:
         lint = skim_utils.SkimUitls().lint
         check = SkimContentCheck()
-        tb = toolbag.Toolbag()
 
         most_recent = check.get_dir_name_cmd_builder("most_recent")
         second = check.get_dir_name_cmd_builder("second")
@@ -191,7 +193,7 @@ def main():
 
         mismatches = check.compare_hashes(latest_hash_results, second_last_hash_results)
         if not mismatches:
-            lint(tb.color("\nAll urls have matching hash.\n", "green"))
+            lint("\nAll urls have matching hash.\n")
             exit(0)
         else:
             for domain in mismatches:

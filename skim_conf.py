@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 
-import time
-import toolbag
-
 
 class Skim_conf:
     '''
     Configuration Items
     '''
     def show_banner(self):
+        import toolbag
         '''
         Print the banner
         '''
@@ -24,7 +22,6 @@ class Skim_conf:
         print(tb.color(" ▄████████▀    ███   ▀█▀ █▀    ▀█   ███   █▀ ", color))
 
         print(tb.color("\n\nOnly domains which are not responding 200OK are printed.\n", color))
-        time.sleep(1.5)
 
 
     def whitelist_domains(self):

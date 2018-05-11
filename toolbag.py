@@ -1,15 +1,5 @@
 #!/usr/bin/env python3
 
-import time
-
-import datetime
-import os
-import random
-import shlex
-import subprocess
-import systemd.daemon
-import systemd.journal
-import termcolor
 from typing import List, Dict
 
 
@@ -20,6 +10,7 @@ class Toolbag:
 
     def clear_screen(self):
         try:
+            import os
             os.system("clear")
         except Exception as e:
             print("Error! in toolbag.clearscreen: " + str(e))
@@ -57,6 +48,7 @@ class Toolbag:
 
     def create_timestamp(self) -> str:
         try:
+            import datetime
             ts = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
             return str(ts)
         except Exception as e:
@@ -87,11 +79,13 @@ class Toolbag:
 
     def terminator(self, process: str) -> bool:
         try:
-            pkil = subprocess.run([shlex.quote("/bin/pkill " + str(process))], shell=True)
-            time.sleep(3)
-            pkl = subprocess.run([shlex.quote("/bin/pkill -15 " + str(process))], shell=True)
-            time.sleep(3)
-            pkill = subprocess.run([shlex.quote("/bin/pkill -9 " + str(process))], shell=True)
+            from time import sleep
+            import subprocess
+            pkil = subprocess.run(["/bin/pkill " + str(process)], shell=True)
+            sleep(3)
+            pkl = subprocess.run(["/bin/pkill -15 " + str(process)], shell=True)
+            sleep(3)
+            pkill = subprocess.run(["/bin/pkill -9 " + str(process)], shell=True)
             pkil_rc = pkil.returncode
             pkl_rc = pkl.returncode
             pkill_rc = pkill.returncode
@@ -108,9 +102,10 @@ class Toolbag:
         Returns a list of PID numbers for a given name
         '''
         try:
+            import subprocess
             pids = []
             apd = pids.append
-            pgrep = subprocess.run([shlex.quote("pgrep " + str(name))], stdout=subprocess.PIPE, shell=True)
+            pgrep = subprocess.run(["pgrep " + str(name)], stdout=subprocess.PIPE, shell=True)
             for pid in pgrep.stdout.splitlines():
                 apd(pid.decode("utf-8"))
             return pids
@@ -120,7 +115,8 @@ class Toolbag:
 
     def get_process_count(self, proc_name: str) -> int:
         try:
-            cmd = shlex.quote("pgrep " + str(proc_name) + " | wc -l")
+            import subprocess
+            cmd = "pgrep " + str(proc_name) + " | wc -l"
             pgrep = subprocess.run([cmd], stdout=subprocess.PIPE, shell=True)
             if pgrep.returncode != 0:
                 raise Exception
@@ -134,6 +130,8 @@ class Toolbag:
 
     def color(self, text: str, color: str) -> str:
         try:
+            import random
+            import termcolor
             c = termcolor
             colors = ['red', 'green', 'yellow', 'magenta', 'cyan']
             if color == "random":
@@ -149,12 +147,13 @@ class Toolbag:
         ''' If filename parameter does not exist, create it.
         '''
         try:
+            import os
+            import subprocess
             file = str(filename)
             if (os.path.isfile(file)):
                 return True
             else:
                 tch = ("/bin/touch " + file)
-                tch = shlex.quote(tch)
                 touch_file = subprocess.run([tch], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                             stderr=subprocess.PIPE, shell=True)
                 if "Permission" in str(touch_file.stderr):
@@ -171,6 +170,8 @@ class Toolbag:
         '''If directory parameter does not exist, create it.
         '''
         try:
+            import os
+            import subprocess
             if (os.path.isdir(str(dir))):
                 return True
             else:
@@ -189,6 +190,7 @@ class Toolbag:
 
     def build_allports_list(self) -> List:
         try:
+            import random
             new_port_list = []
             i = int(0)
             max = int(65536)
@@ -203,6 +205,7 @@ class Toolbag:
 
     def get_port_list(self):
         try:
+            import random
             ports = [
             7, 11, 13, 15, 17, 19, 21, 22, 23, 25, 26, 37, 49, 53, 69, 70, 79, 80, 81, 82, 83, 84, 88, 102, 104,
             110, 111, 113, 119, 123, 129, 137, 143, 161, 175, 179, 195, 311, 389, 443, 444, 445, 465, 500, 502,
@@ -230,6 +233,7 @@ class Toolbag:
 
     def shuffler(self, array: List) -> List:
         try:
+            import random
             random.shuffle(array)
             return array
         except Exception as e:
@@ -237,14 +241,17 @@ class Toolbag:
 
     def sd_notify(self, message: str):
         try:
+            from time import sleep
+            import systemd.daemon
+            import systemd.journal
             if message == "watchdog":
                 systemd.daemon.notify(systemd.daemon.Notification.WATCHDOG)
                 systemd.journal.write("watchdog = 1 sent.")
-                time.sleep(1)
+                sleep(1)
             if message == "ready":
                 systemd.daemon.notify(systemd.daemon.Notification.READY)
                 systemd.journal.write("ready = 1 sent.")
-                time.sleep(2)
+                sleep(2)
         except Exception as e:
             print("Error in toolbag.sd_notify " + str(e))
 

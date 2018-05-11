@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 
 from typing import List
-import toolbag
-import skim_conf
-import skim_utils
-import skim_writer_io
-import time
 
 
 class SkimReader:
@@ -20,6 +15,9 @@ class SkimReader:
         Shuffle and return clean list
         '''
         try:
+            import toolbag
+            import skim_utils
+            import time
             url_list = []
             shuf = toolbag.Toolbag().shuffler
             dir = str(dir)
@@ -45,6 +43,8 @@ class SkimReader:
         Filter whitelisted domains from the list of urls to be processed
         '''
         try:
+            import skim_conf
+            import skim_writer_io
             whitelist = skim_conf.Skim_conf().whitelist_domains()
             writer = skim_writer_io.Skim_writer_io().writer
             clean_master_list = []

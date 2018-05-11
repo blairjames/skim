@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import toolbag
-
 
 class Skim_writer_io:
     '''
@@ -9,10 +7,9 @@ class Skim_writer_io:
     '''
     def writer(self, site: str, file_name: str) -> bool:
         try:
-            ts = toolbag.Toolbag().create_timestamp()
             base_path: str = "/root/scripts/skim/output/"
             with open(str(base_path) + str(file_name) + ".txt", "a") as file:
-                file.write(str(ts) + ": " + str(site) + "\n")
+                file.write(str(site) + "\n")
                 file.close()
             return True
         except Exception as e:

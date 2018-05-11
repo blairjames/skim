@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 
-import skim_writer_io
-import subprocess
-import toolbag
-
 
 class SkimUitls:
 
@@ -12,6 +8,7 @@ class SkimUitls:
         Log and print at the same time.
         '''
         try:
+            import toolbag
             from skim_controller import SkimController
             message = str(message)
             ts = toolbag.Toolbag().create_timestamp()
@@ -74,6 +71,7 @@ class SkimUitls:
         store content and hash for comparison on next pass
         '''
         try:
+            import skim_writer_io
             import skim_hasher
             writer = skim_writer_io.Skim_writer_io().writer
             h = skim_hasher.Hasher()
@@ -111,13 +109,14 @@ class SkimUitls:
             import os
             os.system("clear")
         except Exception as e:
-            print("Error! in toolbag.clearscreen: " + str(e))
+            print("Error! in clearscreen: " + str(e))
 
     def remove_orphan_files(self, path):
         '''
         Delete files left from failed executions
         '''
         try:
+            import subprocess
             rm = subprocess.run(["rm -f " + str(path) + "*.txt"], stdout=subprocess.PIPE, shell=True)
             if rm.returncode != 0:
                 raise Exception

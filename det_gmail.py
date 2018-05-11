@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-
 
 class Gmail():
     '''
@@ -27,6 +23,9 @@ class Gmail():
 
     def sendFile(self, subject, file):
         try:
+            import smtplib
+            from email.mime.multipart import MIMEMultipart
+            from email.mime.text import MIMEText
             with open(str(file), "r") as filetxt:
                 msgtext = MIMEText(filetxt.read(), "plain")
                 to = "Alerts"
@@ -53,6 +52,9 @@ class Gmail():
 
     def sendText(self, subject, message):
         try:
+            import smtplib
+            from email.mime.multipart import MIMEMultipart
+            from email.mime.text import MIMEText
             msgtext = MIMEText(message, "plain")
             to = "Alerts"
             recipients = self.get_recipients()
