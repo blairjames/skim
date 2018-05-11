@@ -128,45 +128,44 @@ class SkimContentCheck:
         try:
             content = []
             apd = content.append
-            with open(file_name.rstrip("\n"), "r") as file:
+            with open(file_name.rstrip("\n"), "r", encoding="utf-8") as file:
                 for line in file.readlines():
-                    apd(line)
+                    apd(line.rstrip("\n").rstrip(" ").lstrip("\n").lstrip(" "))
                 file.close()
             return content
         except Exception as e:
             print("Error! in SkimContentCheck.get_content: " + str(e))
 
-    def search_content(self, domain: str, content_list: List) -> str:
+    def search_content(self, domain: str, content_list: List):
         '''
         Find and retrieve domain specific content from List
         '''
         try:
-            output = []
-            apd = output.append
-            print("\nLooking for: " + str(domain) + "\n\n")
             starter = ("$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$" + str(domain) +
                        "$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$").rstrip("\n").rstrip(" ")
-            for x in content_list:
-                #print(x)
-                if starter in x:
-                    index_start = content_list.index(x)
-                    print("Index start: " + str(x))
-                else:
-                    print("not found...\n")
 
             ender = ("%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%" + str(domain) +
                      "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%").rstrip("\n").rstrip(" ")
-            index_end = content_list.index(str(ender))
 
-            i = int(index_start)
-            print("Index Start: " + str(index_start))
-            print("Index end: " + str(index_end))
-            while i < int(index_end):
-                apd(content_list[i])
-                i += 1
-            output = "".join(output).rstrip("\n").lstrip(" ")
-            print(str(output))
-            return str(output)
+            site_content = []
+            apnd = site_content.append
+            i = int(0)
+            write_flag = False
+            while i < len(content_list):
+                if write_flag == False:
+                    if starter in content_list[i]:
+                        write_flag = True
+                if write_flag == True:
+                    apnd(content_list[i])
+                    i += 1
+                    if ender in content_list[i]:
+                        break
+                else:
+                    i += 1
+
+            print("Content List: \n" + str(site_content) + "\n\n")
+            return site_content
+
         except Exception as e:
             print("Error! in SkimContentCheck.get_content: " + str(e))
 
@@ -206,7 +205,6 @@ def main():
         mismatches = check.compare_hashes(latest_hash_results, second_last_hash_results)
         if not mismatches:
             lint("\nAll urls have matching hash.\n")
-            exit(0)
         else:
             for domain in mismatches:
                 last_content_list = check.get_content(last_content_file_name)
@@ -215,25 +213,23 @@ def main():
                 cont_last = check.search_content(domain, last_content_list)
                 cont_second = check.search_content(domain, second_last_content_list)
 
-                diff_file_1 = "/root/scripts/skim/skim_content.diff"
-                diff_file_2 = "/root/scripts/skim/skim_content2.diff"
+                lint("\n\n^^^^^^^^^^^^^^^^^^^^^ DIFF ^^^^^^^^^^^^^^^^^^^^^^^^^^")
+                out = []
+                adp = out.append
+                for x in cont_last:
+                    if x not in cont_second:
+                        lint(x)
+                        adp(x)
 
-                with open(diff_file_1, "w") as filea:
-                    filea.write(str(cont_last))
-                with open(diff_file_2, "w") as fileb:
-                    fileb.write(str(cont_second))
-
-                diff = subprocess.run(["/usr/bin/diff " + str(diff_file_1) + " " + str(diff_file_2)],
-                                      stdout=subprocess.PIPE, shell=True)
-                out = diff.stdout
-                out = out.decode()
-                if not out:
-                    lint("\nNo Difference!")
-                else:
-                    import det_gmail
-                    message = "Difference in site content: " + str(domain) + "\n" + str(out)
-                    det_gmail.Gmail().sendText("Content Modification Warning.", message)
-                    lint(message)
+                for y in cont_second:
+                    if y not in cont_last:
+                        lint(y)
+                        adp(y)
+                lint("\n")
+                import gmail
+                message = "Difference in site content: " + str(domain) + "\n" + str(out)
+                gmail.Gmail().sendText("Content Modification Warning.", message)
+                lint(message)
 
 
     except Exception as e:
