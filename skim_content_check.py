@@ -115,6 +115,8 @@ class SkimContentCheck:
                     apd(str(key))
                 else:
                     continue
+                if len(mismatches) < 1:
+                    mismatches[0] = "empty"
                 return mismatches
         except Exception as e:
             print("Error! in compare_hashes: " + str(e))
@@ -192,7 +194,7 @@ def main():
         lint("\nsecond_last_content_file_name: " + str(second_last_content_file_name))
 
         mismatches = check.compare_hashes(latest_hash_results, second_last_hash_results)
-        if not mismatches:
+        if mismatches[0] == "empty":
             lint("\nAll urls have matching hash.\n")
             exit(0)
         else:
