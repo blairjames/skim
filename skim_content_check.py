@@ -2,6 +2,7 @@
 
 import skim_utils
 import subprocess
+from time import perf_counter as pc
 from typing import List, Dict
 
 
@@ -13,6 +14,15 @@ class SkimContentCheck:
     the content from the last pass to indicate exactly what was modified.
     These details are them emailed as an alert for further investigation.
     '''
+    def __init__(self):
+        self.perf_get_hash_results = pc
+        self.perf_get_dir_name_cmd_builder = pc
+        self.perf_get_dir_name = pc
+        self.perf_get_file_name = pc
+        self.perf_compare_hashes = pc
+        self.perf_get_content = pc
+        self.perf_search_content = pc
+
 
     def get_hash_results(self, path: str) -> Dict:
         '''
@@ -20,17 +30,17 @@ class SkimContentCheck:
         Split the URL and hash_digest using "~" as delimiter, return tuple and map URL to hash in Dict.
         '''
         try:
-            print("\n\nIn get hash results")
+            p1 = pc()
             hash_dict: Dict = {}
             print("\n\nget_hash_results file to open: " + str(path))
             path = str(path.rstrip("\n"))
             with open(path, "r") as file:
                 for line in file.readlines():
-                    print("Splitting: " + str(line))
                     site, content_hash = line.split("~")
                     hash_dict[str(site)] = str(content_hash)
-                    print("After split into dict: "  + str(site) + " " + str(content_hash))
             file.close()
+            p2 = pc()
+            self.perf_get_hash_results = p2 - p1
             return hash_dict
         except Exception as e:
             print("Error! in SkimContentCheck.get_hash_results: " + str(e))
@@ -40,13 +50,18 @@ class SkimContentCheck:
         Return a command string to be run by "get_dir_name" according to the "which_results" parameter.
         '''
         try:
+            p1 = pc()
             import skim_controller
             basepath: str = skim_controller.SkimController().basepath
             cmd1 = "ls -td " + str(basepath) + "201* | head -n 1"
             cmd2 = "ls -td " + str(basepath) + "201* | head -n 2 | tail -n 1"
             if which_results == "most_recent":
+                p2 = pc()
+                self.perf_get_dir_name_cmd_builder = p2 - p1
                 return str(cmd1)
             elif which_results == "second":
+                p2 = pc()
+                self.perf_get_dir_name_cmd_builder = p2 - p1
                 return str(cmd2)
         except Exception as e:
             print("Error! in SkimContentCheck.get_dir_name_cmd_builder: " + str(e))
@@ -56,6 +71,7 @@ class SkimContentCheck:
         Return the name of the directory after running the "cmd" parameter.
         '''
         try:
+            p1 = pc()
             lint = skim_utils.SkimUitls().lint
             lint("CMD for file name: " + str(cmd))
             dir_name = subprocess.run([str(cmd)], stdout = subprocess.PIPE, shell = True)
@@ -65,6 +81,8 @@ class SkimContentCheck:
             dir_out = dir_out.decode("utf-8")
             dir_out = dir_out.rstrip('\n')
             lint(str(dir_out))
+            p2 = pc()
+            self.perf_get_dir_name = p2 - p1
             return str(dir_out)
         except IOError as i:
             print("get_file_path_subprocess IOERROR" + str(i))
@@ -76,6 +94,7 @@ class SkimContentCheck:
         Return the name of the hash file in the directory calculated by get_dir_name
         '''
         try:
+            p1 = pc()
             lint = skim_utils.SkimUitls().lint
             file_cmd = ("ls -td " + str(dir_name) + "/*" + str(file_to_return) + "*")
             lint("File cmd: " + str(file_cmd))
@@ -85,6 +104,8 @@ class SkimContentCheck:
             file_name_out = file_name.stdout
             file_name_out = file_name_out.decode("utf-8")
             lint("File name: " + str(file_name_out))
+            p2 = pc()
+            self.perf_get_file_name = p2 - p1
             return str(file_name_out)
         except IOError as i:
             print("Error! in content.checker.get_hashes: IOERROR subprocess: " + str(i))
@@ -97,14 +118,13 @@ class SkimContentCheck:
         Return List of URL's with non matching hashes.
         '''
         try:
+            p1 = pc()
             lint = skim_utils.SkimUitls().lint
             mismatches = []
             apd = mismatches.append
             for key in dict1.keys():
                 hash_latest = dict1.get(key)
                 hash_second = dict2.get(key)
-                lint("Latest Hash: " + str(hash_latest))
-                lint("Second Hash: " + str(hash_second))
                 if (not hash_latest) or (not hash_second):
                     continue
                 if (hash_latest != hash_second):
@@ -115,8 +135,8 @@ class SkimContentCheck:
                     apd(str(key))
                 else:
                     continue
-                if len(mismatches) < 1:
-                    mismatches[0] = "empty"
+                p2 = pc()
+                self.perf_compare_hashes = p2 -p1
                 return mismatches
         except Exception as e:
             print("Error! in compare_hashes: " + str(e))
@@ -126,27 +146,29 @@ class SkimContentCheck:
         Read content file into List
         '''
         try:
+            p1 = pc()
             content = []
             apd = content.append
-            with open(file_name.rstrip("\n"), "r", encoding="utf-8") as file:
+            with open(file_name.rstrip("\n"), "r") as file:
                 for line in file.readlines():
-                    apd(line.rstrip("\n").rstrip(" ").lstrip("\n").lstrip(" "))
+                    apd(line)
                 file.close()
+                p2 = pc()
+                self.perf_get_content = p2 - p1
             return content
         except Exception as e:
             print("Error! in SkimContentCheck.get_content: " + str(e))
 
-    def search_content(self, domain: str, content_list: List):
+    def search_content(self, domain: str, content_list: List) -> List:
         '''
         Find and retrieve domain specific content from List
         '''
         try:
+            p1 = pc()
             starter = ("$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$" + str(domain) +
                        "$$$$$$$$$$~~~~~~~~~~$$$$$$$$$$").rstrip("\n").rstrip(" ")
-
             ender = ("%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%" + str(domain) +
                      "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%").rstrip("\n").rstrip(" ")
-
             site_content = []
             apnd = site_content.append
             i = int(0)
@@ -162,12 +184,22 @@ class SkimContentCheck:
                         break
                 else:
                     i += 1
-
-            print("Content List: \n" + str(site_content) + "\n\n")
+            p2 = pc()
+            self.perf_search_content = p2 - p1
             return site_content
-
         except Exception as e:
             print("Error! in SkimContentCheck.get_content: " + str(e))
+
+    def print_perf_values(self):
+        lint = skim_utils.SkimUitls().lint
+        lint(
+        "\nperf_get_hash_results: " + str(self.perf_get_hash_results) +
+        "\nperf_get_dir_name_cmd_builder: " + str(self.perf_get_dir_name_cmd_builder) +
+        "\nperf_get_dir_name: " + str(self.perf_get_dir_name) +
+        "\nperf_get_file_name: " + str(self.perf_get_file_name) +
+        "\nperf_compare_hashes: " + str(self.perf_compare_hashes) +
+        "\nperf_get_content: " + str(self.perf_get_content) +
+        "\nperf_search_content: " + str(self.perf_search_content))
 
 
 def main():
@@ -213,24 +245,12 @@ def main():
                 cont_last = check.search_content(domain, last_content_list)
                 cont_second = check.search_content(domain, second_last_content_list)
 
-                lint("\n\n^^^^^^^^^^^^^^^^^^^^^ DIFF ^^^^^^^^^^^^^^^^^^^^^^^^^^")
-                out = []
-                adp = out.append
-                for x in cont_last:
-                    if x not in cont_second:
-                        lint(x)
-                        adp(x)
-
-                for y in cont_second:
-                    if y not in cont_last:
-                        lint(y)
-                        adp(y)
-                lint("\n")
+                diff = list(set(cont_second) ^ set(cont_last))
+                df = "\n".join(diff)
                 import gmail
-                message = "Difference in site content: " + str(domain) + "\n" + str(out)
-                gmail.Gmail().sendText("Content Modification Warning.", message)
-                lint(message)
-
+                mess = "Content Warning - " + str(domain)
+                lint(mess + "\n" + df)
+                gmail.Gmail().sendText(mess, df)
 
     except Exception as e:
         print("Error! in content_checker.main(): " + str(e))

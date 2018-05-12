@@ -56,6 +56,7 @@ class Hasher():
             "data-prime-desktop-src=",
             "prime-ajax-image",
             "data-prime-tablet-src",
+            "viewerSessionId",
             "data-prime-mobile",
             "<div class=\"flex-caption",
             "<div class=\"caption\">",
