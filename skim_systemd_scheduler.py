@@ -7,17 +7,22 @@ def main():
     Handles order of execution and waiting in between passes.
     '''
     try:
-        from time import sleep
+        from time import sleep, perf_counter
         import skim_content_check
         import skim_controller
         from skim_utils import SkimUitls as utl
         ctrl = skim_controller
         while True:
-            sleep_time: int = 120
+            p1 = perf_counter()
+            sleep_time: int = 10
             ctrl.main()
             skim_content_check.main()
+            p2 = perf_counter()
+            total_time = p2 - p1
+            time = utl().time_pretty(total_time)
+            utl().lint(("\n\nExecution time: " + str(time) +
+                        "\n\nNow sleeping for " + str(sleep_time) + " seconds.\n"))
             ctrl.SkimController().display_results()
-            utl().lint(("\nNow sleeping for " + str(sleep_time) + " seconds.\n"))
             sleep(sleep_time)
 
     except Exception as e:

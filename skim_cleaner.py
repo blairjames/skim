@@ -54,14 +54,15 @@ class SkimCleaner:
             import skim_utils
             num_domains: int = skim_controller.SkimController().num_domains
             lint = skim_utils.SkimUitls().lint
-            lint("\n***************************************************************")
+            lint("***************************************")
             lint("Total Sites: " + str(num_domains))
             lint("Sites up: " + str(self.count_sites("up.txt")))
             lint("Sites not responding: " + str(self.count_sites("not_responding.txt")))
             lint("Sharepoint Sites: " + str(self.count_sites("sharepoint.txt")))
             lint("Wordpress Sites: " + str(self.count_sites("wordpress.txt")))
             lint("Drupal Sites: " + str(self.count_sites("drupal.txt")))
-            lint("***************************************************************")
+            lint("Joomla Sites: " + str(self.count_sites("joomla.txt")))
+            lint("***************************************")
         except Exception as e:
             print("Error! in Cleaner.print_counts(): " + str(e))
 

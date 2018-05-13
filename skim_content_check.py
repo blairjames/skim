@@ -194,6 +194,8 @@ class SkimContentCheck:
         '''
         Display performance timings for each method
         '''
+        import skim_cms_filter
+        cms = skim_cms_filter.SkimCmsFilter()
         lint = skim_utils.SkimUitls().lint
         lint(
         "\nperf_get_hash_results: " + str(self.perf_get_hash_results) +
@@ -202,7 +204,10 @@ class SkimContentCheck:
         "\nperf_get_file_name: " + str(self.perf_get_file_name) +
         "\nperf_compare_hashes: " + str(self.perf_compare_hashes) +
         "\nperf_get_content: " + str(self.perf_get_content) +
-        "\nperf_search_content: " + str(self.perf_search_content))
+        "\nperf_search_content: " + str(self.perf_search_content) +
+        "\nperf_is_it_wordpress: " + str(cms.perf_is_it_wordpress) +
+        "\nperf_is_it_sharepoint: " + str(cms.perf_is_it_sharepoint) +
+        "\nperf_is_it_joomla: " + str(cms.perf_is_it_joomla))
 
 
 def main():
@@ -244,19 +249,18 @@ def main():
             for domain in mismatches:
                 last_content_list = check.get_content(last_content_file_name)
                 second_last_content_list = check.get_content(second_last_content_file_name)
-
                 cont_last = check.search_content(domain, last_content_list)
                 cont_second = check.search_content(domain, second_last_content_list)
-
                 diff = list(set(cont_second) ^ set(cont_last))
                 df = "\n".join(diff)
+
                 import gmail
                 import toolbag
                 col = toolbag.Toolbag().color
-                mess = col("Content Warning - " + str(domain) + "\nThese elements are different:\n", "red")
-                lint("\n" + mess + "\n" + col(df, "yellow"))
-                gmail.Gmail().sendText(mess, df)
-
+                log_mess = col("\nContent Warning - " + str(domain) + "\nThese elements are different:\n", "red")
+                lint("\n" + log_mess + "\n" + col(df, "yellow"))
+                mail_mess = "Content Warning - " + str(domain)
+                gmail.Gmail().sendText(mail_mess, df)
                 lint("\n\nPerformance Timings per method:")
                 lint(str(check.print_perf_values()))
 

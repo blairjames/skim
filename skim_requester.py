@@ -27,7 +27,7 @@ class SkimRequester:
                 cms.is_it_drupal(url, res.headers, res.text)
                 cms.is_it_wordpress(url, res.headers)
                 cms.is_it_sharepoint(url, res.headers)
-                cms.is_it_joomla(url, res.headers)
+                cms.is_it_joomla(url, res.headers, res.text)
                 return True
             else:
                 res.raise_for_status()

@@ -12,9 +12,9 @@ class SkimController:
         Controller Constructor - Set instance attributes here.
         '''
         try:
-            self.processes: int = 512
+            self.processes: int = 256
             self.http_timeout: int = 60
-            self.staggering: int = 30
+            self.staggering: int = 25
             self.basepath:str = "/root/scripts/skim/output/"
             self.path_to_urls: str = "/root/scripts/skim/master_list_external_domains.txt"
             self.num_domains: int = skim_utils.SkimUitls().how_many_domains_in_list(self.path_to_urls)

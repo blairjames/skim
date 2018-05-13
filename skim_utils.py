@@ -89,6 +89,12 @@ class SkimUitls:
             print("Error!! in SkimUitls.manage_content " + str(e))
             self.lint("Error! in SkimUitls.manage_content " + str(e))
 
+    def time_pretty(self, total_time):
+        sec = str(int(total_time % 60))
+        minutes = total_time.__floordiv__(60)
+        minutes = str(int(minutes))
+        return str(minutes + ":" + sec)
+
     def test_internet(self):
         '''
         Test internet connectivity, proceed if successful.
