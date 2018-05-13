@@ -107,7 +107,6 @@ def main():
         controller.clean_and_print_banner()
         list_of_domains = reader(controller.path_to_urls)
         controller.parallelize(list_of_domains)
-        controller.display_results()
 
 if __name__ == '__main__':
     main()

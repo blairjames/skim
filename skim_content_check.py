@@ -191,6 +191,9 @@ class SkimContentCheck:
             print("Error! in SkimContentCheck.get_content: " + str(e))
 
     def print_perf_values(self):
+        '''
+        Display performance timings for each method
+        '''
         lint = skim_utils.SkimUitls().lint
         lint(
         "\nperf_get_hash_results: " + str(self.perf_get_hash_results) +
@@ -248,9 +251,14 @@ def main():
                 diff = list(set(cont_second) ^ set(cont_last))
                 df = "\n".join(diff)
                 import gmail
-                mess = "Content Warning - " + str(domain)
-                lint(mess + "\n" + df)
+                import toolbag
+                col = toolbag.Toolbag().color
+                mess = col("Content Warning - " + str(domain) + "\nThese elements are different:\n", "red")
+                lint("\n" + mess + "\n" + col(df, "yellow"))
                 gmail.Gmail().sendText(mess, df)
+
+                lint("\n\nPerformance Timings per method:")
+                lint(str(check.print_perf_values()))
 
     except Exception as e:
         print("Error! in content_checker.main(): " + str(e))

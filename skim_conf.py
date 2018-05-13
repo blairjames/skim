@@ -119,6 +119,7 @@ class Skim_conf:
                           "skillingsolutions.net.au",
                           "oecec.net.au",
                           "learningplace.net.au",
+                          "crazydomains.com.au",
                           "skillsqld.org",
                           "oneportal.com.au",
                           "qparents.com",
