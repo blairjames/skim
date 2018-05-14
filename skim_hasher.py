@@ -20,6 +20,7 @@ class Hasher():
             "formDigestElement.value",
             "var heightArray ",
             "var titleArray ",
+            "ML:128-PU",
             "var descriptionArray",
             "secure.aadcdn.microsoftonline-p",
             "var linkArray ",
@@ -27,6 +28,7 @@ class Hasher():
             "ScriptResource.axd?",
             "WebResource.axd?",
             "PlaceHolderSearchArea",
+            "login.microsoftonline.com",
             "SPWebPartManager1",
             "__EVENTVALIDATION",
             "g_ViewIdToViewCounterMap",
@@ -56,6 +58,7 @@ class Hasher():
             "WebPartWPQ5",
             "autoplay\" id=\"",
             "data-prime-desktop-src=",
+            "console.info",
             "prime-ajax-image",
             "data-prime-tablet-src",
             "viewerSessionId",
@@ -78,7 +81,7 @@ class Hasher():
             "wp-emoji-release.min.js?ver=",
             "wp-includes/js/wp-embed.min.js?ver=",
             "alyeska/assets/js/alyeska.min.js?ver=",
-            "class=\"hidden\">Version 1.0.2.0 ("
+            "class=\"hidden\">Version 1.0.2.0"
         ]
 
     def checker(self, line: str) -> bool:
