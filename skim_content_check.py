@@ -15,13 +15,13 @@ class SkimContentCheck:
     These details are them emailed as an alert for further investigation.
     '''
     def __init__(self):
-        self.perf_get_hash_results = pc
-        self.perf_get_dir_name_cmd_builder = pc
-        self.perf_get_dir_name = pc
-        self.perf_get_file_name = pc
-        self.perf_compare_hashes = pc
-        self.perf_get_content = pc
-        self.perf_search_content = pc
+        self.perf_get_hash_results = "n/a"
+        self.perf_get_dir_name_cmd_builder = "n/a"
+        self.perf_get_dir_name = "n/a"
+        self.perf_get_file_name = "n/a"
+        self.perf_compare_hashes = "n/a"
+        self.perf_get_content = "n/a"
+        self.perf_search_content = "n/a"
 
 
     def get_hash_results(self, path: str) -> Dict:
@@ -256,7 +256,7 @@ def main():
                 lint("\n" + log_mess + "\n" + col(df, "yellow"))
                 mail_mess = "Content Warning - " + str(domain)
                 gmail.Gmail().sendText(mail_mess, df)
-                lint("\n\nPerformance Timings per method:")
+                lint("Performance Timings per method:")
                 lint(str(check.print_perf_values()))
 
     except Exception as e:
