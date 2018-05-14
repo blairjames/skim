@@ -194,8 +194,6 @@ class SkimContentCheck:
         '''
         Display performance timings for each method
         '''
-        import skim_cms_filter
-        cms = skim_cms_filter.SkimCmsFilter()
         lint = skim_utils.SkimUitls().lint
         lint(
         "\nperf_get_hash_results: " + str(self.perf_get_hash_results) +
@@ -204,10 +202,7 @@ class SkimContentCheck:
         "\nperf_get_file_name: " + str(self.perf_get_file_name) +
         "\nperf_compare_hashes: " + str(self.perf_compare_hashes) +
         "\nperf_get_content: " + str(self.perf_get_content) +
-        "\nperf_search_content: " + str(self.perf_search_content) +
-        "\nperf_is_it_wordpress: " + str(cms.perf_is_it_wordpress) +
-        "\nperf_is_it_sharepoint: " + str(cms.perf_is_it_sharepoint) +
-        "\nperf_is_it_joomla: " + str(cms.perf_is_it_joomla))
+        "\nperf_search_content: " + str(self.perf_search_content))
 
 
 def main():

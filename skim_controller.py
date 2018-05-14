@@ -12,7 +12,7 @@ class SkimController:
         Controller Constructor - Set instance attributes here.
         '''
         try:
-            self.processes: int = 256
+            self.processes: int = 384
             self.http_timeout: int = 60
             self.staggering: int = 25
             self.basepath:str = "/root/scripts/skim/output/"
@@ -58,7 +58,7 @@ class SkimController:
         '''
         try:
             import multiprocessing
-            with multiprocessing.Pool(int(self.processes), maxtasksperchild=10) as pool:
+            with multiprocessing.Pool(int(self.processes), maxtasksperchild=48) as pool:
                 pool.map(self.director, clean_master_list)
             return True
         except AssertionError as i:

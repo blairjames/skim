@@ -16,19 +16,30 @@ class SkimRequester:
             headers = toolbag.Toolbag().get_headers("ie")
             writer = skim_writer_io.Skim_writer_io().writer
             http_timeout = skim_controller.SkimController().http_timeout
-            manage_content = skim_utils.SkimUitls().manage_content
+            utils = skim_utils.SkimUitls()
             cms = skim_cms_filter.SkimCmsFilter()
             url = str(url)
             res = requests.get(url, headers=headers, timeout=http_timeout)
             code = res.status_code
             if code == 200:
                 writer(url, "up")
-                manage_content(url, res.text)
-                cms.is_it_drupal(url, res.headers, res.text)
-                cms.is_it_wordpress(url, res.headers)
-                cms.is_it_sharepoint(url, res.headers)
-                cms.is_it_joomla(url, res.headers, res.text)
-                return True
+                utils.manage_content(url, res.text)
+                if not cms.is_it_sharepoint(url, res.headers):
+                    if not cms.is_it_wordpress(url, res.headers):
+                        if not cms.is_it_drupal(url, res.headers, res.text):
+                            cms.is_it_joomla(url, res.headers, res.text)
+                        else:
+                            pass
+                    else:
+                        pass
+                else:
+                    #Uncomment to show performance stats
+                    #utils.lint(str(url) + " Perf Manage Content: " + str(utils.perf_manage_content))
+                    utils.lint(str(url) + ": Perf Drupal: " + str(cms.perf_is_it_drupal))
+                    utils.lint(str(url) + ": Perf Wordpress: " + str(cms.perf_is_it_wordpress))
+                    utils.lint(str(url) + ": Perf_sharepoint: " + str(cms.perf_is_it_sharepoint))
+                    utils.lint(str(url) + ": Perf_Joomla: " + str(cms.perf_is_it_joomla))
+                    return True
             else:
                 res.raise_for_status()
 

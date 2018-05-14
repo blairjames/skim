@@ -7,10 +7,10 @@ from time import perf_counter as pc
 class SkimCmsFilter:
 
     def __init__(self):
-        self.perf_is_it_drupal = pc
-        self.perf_is_it_wordpress = pc
-        self.perf_is_it_sharepoint = pc
-        self.perf_is_it_joomla = pc
+        self.perf_is_it_drupal: str = "n/a"
+        self.perf_is_it_wordpress: str = "n/a"
+        self.perf_is_it_sharepoint: str = "n/a"
+        self.perf_is_it_joomla: str = "n/a"
 
     def is_it_drupal(self, url, headers: str, content: str) -> bool:
         '''
@@ -23,8 +23,16 @@ class SkimCmsFilter:
             if ("drupal" in check) or ("Drupal" in check):
                 writer(url, "drupal")
                 p2 = pc()
-                self.perf_is_it_drupal = p2 - p1
+                timer = str(p2 - p1)
+                timer = timer[:8]
+                self.perf_is_it_drupal = str(timer)
                 return True
+            else:
+                p2 = pc()
+                timer = str(p2 - p1)
+                timer = timer[:8]
+                self.perf_is_it_drupal = str(timer)
+                return False
         except Exception as e:
             print("Error! in drupal: " + str(e))
 
@@ -39,8 +47,16 @@ class SkimCmsFilter:
             if ("wp" in headers) or ("xmlrpc.php" in headers):
                 writer(url, "wordpress")
                 p2 = pc()
-                self.perf_is_it_wordpress = p2 - p1
+                timer = str(p2 - p1)
+                timer = timer[:8]
+                self.perf_is_it_wordpress = str(timer)
                 return True
+            else:
+                p2 = pc()
+                timer = str(p2 - p1)
+                timer = timer[:8]
+                self.perf_is_it_wordpress = str(timer)
+                return False
         except Exception as e:
             print("Error! in is_it_wordpress " + str(e))
 
@@ -51,12 +67,19 @@ class SkimCmsFilter:
         try:
             p1 = pc()
             writer = skim_writer_io.Skim_writer_io().writer
-            if (("MicrosoftSharePointTeamServices" in headers)
-            or ("access-keys-sharepoint-schools.html" in headers)):
+            if any("SharePoint" in x for x in headers):
                 writer(url, "sharepoint")
                 p2 = pc()
-                self.perf_is_it_sharepoint = p2 - p1
+                timer = str(p2 - p1)
+                timer = timer[:8]
+                self.perf_is_it_sharepoint = str(timer)
                 return True
+            else:
+                p2 = pc()
+                timer = str(p2 - p1)
+                timer = timer[:8]
+                self.perf_is_it_sharepoint = str(timer)
+                return False
         except Exception as e:
             print("Error! in is_it_sharepoint: " + str(e))
 
@@ -67,13 +90,20 @@ class SkimCmsFilter:
         try:
             p1 = pc()
             writer = skim_writer_io.Skim_writer_io().writer
-            search_space = str(headers) + str(content)
+            search_space = str("".join(headers)) + str(content)
+            print("\n\n\n\n^^^^^^^^^^^^^^^^^^^^^^^^^^" + search_space)
             if "joomla" in search_space:
                 writer(url, "joomla")
                 p2 = pc()
-                self.perf_is_it_joomla = p2 - p1
+                timer = str(p2 - p1)
+                timer = timer[:8]
+                self.perf_is_it_joomla = str(timer)
                 return True
             else:
+                p2 = pc()
+                timer = str(p2 - p1)
+                timer = timer[:8]
+                self.perf_is_it_joomla = str(timer)
                 return False
         except Exception as e:
             print("Error! in is_it_joomla: " + str(e))

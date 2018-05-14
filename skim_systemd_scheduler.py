@@ -14,7 +14,7 @@ def main():
         ctrl = skim_controller
         while True:
             p1 = perf_counter()
-            sleep_time: int = 10
+            sleep_time: int = 30
             ctrl.main()
             skim_content_check.main()
             p2 = perf_counter()

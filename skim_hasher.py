@@ -9,7 +9,6 @@ class Hasher():
     '''
     def __init__(self):
         self.dynamic_content = [
-
             "__REQUESTDIGEST",
             "window[\"_csrf_\"] ",
             "/resume/idp/prp.ping",
