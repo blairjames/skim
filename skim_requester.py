@@ -35,10 +35,10 @@ class SkimRequester:
                 else:
                     #Uncomment to show performance stats
                     #utils.lint(str(url) + " Perf Manage Content: " + str(utils.perf_manage_content))
-                    utils.lint(str(url) + ": Perf Drupal: " + str(cms.perf_is_it_drupal))
-                    utils.lint(str(url) + ": Perf Wordpress: " + str(cms.perf_is_it_wordpress))
-                    utils.lint(str(url) + ": Perf_sharepoint: " + str(cms.perf_is_it_sharepoint))
-                    utils.lint(str(url) + ": Perf_Joomla: " + str(cms.perf_is_it_joomla))
+                    #utils.lint(str(url) + ": Perf Drupal: " + str(cms.perf_is_it_drupal))
+                    #utils.lint(str(url) + ": Perf Wordpress: " + str(cms.perf_is_it_wordpress))
+                    #utils.lint(str(url) + ": Perf_sharepoint: " + str(cms.perf_is_it_sharepoint))
+                    #utils.lint(str(url) + ": Perf_Joomla: " + str(cms.perf_is_it_joomla))
                     return True
             else:
                 res.raise_for_status()

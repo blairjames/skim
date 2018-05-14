@@ -5,8 +5,16 @@ from time import perf_counter as pc
 
 
 class SkimCmsFilter:
+    '''
+    Filters HTTP headers and content to identify what CMS is used if any.
+    Is called from Requester, which can display them for profiling.
+    '''
 
     def __init__(self):
+        '''
+        Constructor initialises vars to store results from performance timers
+        Requester Class calls and can display them for profiling.
+        '''
         self.perf_is_it_drupal: str = "n/a"
         self.perf_is_it_wordpress: str = "n/a"
         self.perf_is_it_sharepoint: str = "n/a"
@@ -91,7 +99,6 @@ class SkimCmsFilter:
             p1 = pc()
             writer = skim_writer_io.Skim_writer_io().writer
             search_space = str("".join(headers)) + str(content)
-            print("\n\n\n\n^^^^^^^^^^^^^^^^^^^^^^^^^^" + search_space)
             if "joomla" in search_space:
                 writer(url, "joomla")
                 p2 = pc()
