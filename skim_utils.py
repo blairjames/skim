@@ -97,7 +97,9 @@ class SkimUitls:
             self.lint("Error! in SkimUitls.manage_content " + str(e))
 
     def time_pretty(self, total_time):
-        sec = str(int(total_time % 60))
+        sec = int(total_time % 60)
+        if sec < 10:
+            sec = "0" + str(sec)
         minutes = total_time.__floordiv__(60)
         minutes = str(int(minutes))
         return str(minutes + ":" + sec)
