@@ -21,6 +21,7 @@ class Hasher():
             "var heightArray ",
             "var titleArray ",
             "var descriptionArray",
+            "secure.aadcdn.microsoftonline-p",
             "var linkArray ",
             "var pictureArray",
             "ScriptResource.axd?",

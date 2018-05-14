@@ -28,7 +28,7 @@ class SkimReader:
                     apd("http://" + str(url))
                 url_file.close()
             col = toolbag.Toolbag().color
-            lint(col("\nNumber of domains before whitelisting: " + str(len(url_list)), "yellow"))
+            lint(col("Number of domains before whitelisting: " + str(len(url_list)), "yellow"))
             time.sleep(.7)
             clean_list = self.whitelist_sieve(url_list)
             clean_list = shuf(clean_list)

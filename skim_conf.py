@@ -45,6 +45,7 @@ class Skim_conf:
                         "codingcounts.org.au",
                         "corporate-vpn-dr.eq.edu.au",
                         "crazydomains.com.au",
+                        "intranet.sit.education.qld.gov.au",
                         "curriculum.qld.gov.au",
                         "DC.date.modified",
                         "det.net.au",
