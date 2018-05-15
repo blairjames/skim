@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from time import perf_counter
+import skim_requester
 
 
 class SkimNotResponding:
@@ -36,6 +37,17 @@ class SkimNotResponding:
         p2 = perf_counter()
         self.perf_clean_list = p2 - p1
         return new_list
+
+
+
+
+
+
+
+
+
+
+
 
 def main():
     new_skim_not_res = SkimNotResponding()
