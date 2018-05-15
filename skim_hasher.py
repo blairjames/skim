@@ -22,6 +22,7 @@ class Hasher():
             "var titleArray ",
             "ML:128-PU",
             "var descriptionArray",
+            "DC.date.modified",
             "secure.aadcdn.microsoftonline-p",
             "RowCount",
             "var linkArray ",
