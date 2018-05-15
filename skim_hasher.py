@@ -4,9 +4,7 @@
 class Hasher():
     '''
     Hasher takes responsibility for filtering and hashing content from http response data.
-
     Dynamic_content is the "List" of dynamic elements that cause false positive alerts.
-    Blair 20180515_1240
     '''
     def __init__(self):
         self.dynamic_content = [
