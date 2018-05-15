@@ -3,7 +3,7 @@
 
 class Hasher():
     '''
-    Hasher takes responsibility for filtering and hashing content.
+    Hasher takes responsibility for filtering and hashing content from http response data.
 
     Dynamic_content is the "List" of dynamic elements that cause false positive alerts.
     '''
