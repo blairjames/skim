@@ -26,6 +26,8 @@ class SkimRequester:
             if code == 200:
                 writer(url, "up")
                 utils.manage_content(url, res.text)
+
+                #short circuit, if one CMS then not another, in order of probability
                 if not cms.is_it_sharepoint(url, res.headers):
                     if not cms.is_it_wordpress(url, res.headers):
                         if not cms.is_it_drupal(url, res.headers, res.text):

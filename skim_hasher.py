@@ -75,6 +75,7 @@ class Hasher():
             "<div class=\"clear",
             "</div>",
             "moodle-core-formautosubmit",
+            "OF THIRD PARTY NOTICE",
             "sesskey",
             "M.util.js_pending",
             "Duplicate agent injection detected",
@@ -96,11 +97,14 @@ class Hasher():
         Checks each element of the dynamic_content "List" against the "line" parameter and return bool
         '''
         try:
+            import skim_utils
+            lint = skim_utils.SkimUitls().lint
             line = str(line)
             cont = self.dynamic_content
             for el in cont:
-                if str(el) in line:
-
+                lint("\n\n^^^^^^^^^^^^^^^^^^^^^Dynamic element is: \n" + str(el))
+                if el in line:
+                    lint("\n\n^^^^^^^^^ LINE of Content we are looking in ^^^^^^^^^\n" + str(line))
                     return True
             return False
         except Exception as e:
@@ -114,11 +118,12 @@ class Hasher():
         '''
         try:
             modded = []
+            apnd = modded.append
             content = str(content)
             for line in content.splitlines():
                 test = self.checker(line)
                 if not test:
-                    modded.append(str(line))
+                    apnd(line)
             return "\n".join(modded)
         except Exception as e:
             print("Error! in Hasher: " + str(e))
