@@ -7,7 +7,9 @@ import skim_writer_io
 
 
 class SkimRequester:
-
+    '''
+    Comment
+    '''
     def send_request(self, url):
         try:
             import toolbag
