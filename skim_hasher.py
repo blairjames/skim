@@ -33,7 +33,7 @@ class Hasher():
             "WebResource.axd?",
             "PlaceHolderSearchArea",
             "login.microsoftonline.com",
-            "_gaq.push([",
+            "gaq.push",
             "SPWebPartManager1",
             "__EVENTVALIDATION",
             "g_ViewIdToViewCounterMap",
@@ -100,6 +100,7 @@ class Hasher():
             cont = self.dynamic_content
             for el in cont:
                 if str(el) in line:
+
                     return True
             return False
         except Exception as e:
