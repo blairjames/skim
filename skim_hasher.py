@@ -33,6 +33,7 @@ class Hasher():
             "WebResource.axd?",
             "PlaceHolderSearchArea",
             "login.microsoftonline.com",
+            "_gaq.push([",
             "SPWebPartManager1",
             "__EVENTVALIDATION",
             "g_ViewIdToViewCounterMap",
