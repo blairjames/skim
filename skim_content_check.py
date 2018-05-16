@@ -241,6 +241,8 @@ def main():
         if not mismatches:
             lint("\nAll urls have matching hash.\n")
         else:
+            lint("\n\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Number of mismatches: " + str(len(mismatches))
+                 + " ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
             for domain in mismatches:
                 last_content_list = check.get_content(last_content_file_name)
                 second_last_content_list = check.get_content(second_last_content_file_name)
@@ -248,7 +250,6 @@ def main():
                 cont_second = check.search_content(domain, second_last_content_list)
                 diff = list(set(cont_second) ^ set(cont_last))
                 df = "\n".join(diff)
-
                 import gmail
                 import toolbag
                 col = toolbag.Toolbag().color
@@ -261,7 +262,6 @@ def main():
 
     except Exception as e:
         print("Error! in content_checker.main(): " + str(e))
-
 
 if __name__ == '__main__':
     main()

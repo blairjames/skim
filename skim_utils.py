@@ -99,20 +99,12 @@ class SkimUitls:
     def time_pretty(self, total_time: int):
         try:
             sec = int(total_time % 60)
-            print("1 - " + str(sec))
             if sec < 10:
-                print("2 " + str(sec))
                 sec = str(sec)
-                print("3 " + str(sec))
-                sec = str("0" + sec)
-                print("4 " + str(sec))
             minutes = total_time.__floordiv__(60)
-            print("5 " + str(minutes))
             minutes = int(minutes)
             minutes = str(minutes)
-            print("6 " + minutes)
             sec = str(sec)
-            print("Return value: " + minutes + ":" + sec)
             return minutes + ":" + sec
         except Exception as e:
             print("Error! in skim_utils.time_pretty: " + str(e))

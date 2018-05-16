@@ -9,7 +9,7 @@ class Hasher():
     def __init__(self):
         self.dynamic_content = [
             "__REQUESTDIGEST",
-            "window[\"_csrf_\"] ",
+            "window[\"_csrf_\"",
             "/resume/idp/prp.ping",
             "<div id=\"fws_",
             "formDigestElement.value",
@@ -102,9 +102,7 @@ class Hasher():
             line = str(line)
             cont = self.dynamic_content
             for el in cont:
-                lint("\n\n^^^^^^^^^^^^^^^^^^^^^Dynamic element is: \n" + str(el))
                 if el in line:
-                    lint("\n\n^^^^^^^^^ LINE of Content we are looking in ^^^^^^^^^\n" + str(line))
                     return True
             return False
         except Exception as e:
