@@ -29,6 +29,9 @@ class SkimUitls:
             print("Error in SkimUitls.lint" + str(e))
 
     def get_port_list(self):
+        '''
+        List of most vulnerable ports
+        '''
         try:
             import random
             ports = [
@@ -94,6 +97,9 @@ class SkimUitls:
             self.lint("Error! in SkimUitls.manage_content " + str(e))
 
     def time_pretty(self, total_time: int):
+        '''
+        Take total time from perf timers and format nicely
+        '''
         try:
             sec = int(total_time % 60)
             if sec < 10:

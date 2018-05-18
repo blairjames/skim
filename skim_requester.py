@@ -8,9 +8,12 @@ import skim_writer_io
 
 class SkimRequester:
     '''
-    Comment
+    Handle sending HTTP requests and parsing HTTP responses.
     '''
     def send_request(self, url):
+        '''g
+        Take url, send HTTP request then process through logic according to response.
+        '''
         try:
             import toolbag
             import skim_cms_filter
@@ -31,7 +34,7 @@ class SkimRequester:
                 if not cms.is_it_sharepoint(url, res.headers):
                     if not cms.is_it_wordpress(url, res.headers):
                         if not cms.is_it_drupal(url, res.headers, res.text):
-                            cms.is_it_joomla(url, res.headers, res.text)
+                            cms.is_it_joomla(url, res.headers)
                         else:
                             pass
                     else:

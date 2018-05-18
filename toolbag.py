@@ -9,6 +9,9 @@ class Toolbag:
     '''
 
     def clear_screen(self):
+        '''
+        Clear the screen before running the app
+        '''
         try:
             import os
             os.system("clear")
@@ -16,6 +19,9 @@ class Toolbag:
             print("Error! in toolbag.clearscreen: " + str(e))
 
     def lint(self, message: str, logname: str) -> bool:
+        '''
+        Log and print at the same time.
+        '''
         try:
             with open(str(logname), "a") as file:
                 file.write(str(message) + "\n")
@@ -28,12 +34,19 @@ class Toolbag:
             print("ERROR!!! in lint. logname is: " + str(logname) + "exception: " + str(e))
 
     def excepticon(self, method_name: str, exception: Exception):
+        '''j
+        Called from exceptions with method name and exception message.
+        Can add complexity when exceptions chain.
+        '''
         try:
             self.lint = ("Error!! in " + str(method_name) + " Error Message: " + str(exception))
         except Exception as e:
             print("Error! in Toolbag.excepticon() exception manager: " + str(e))
 
     def create_logfile(self, dir: str, application_name: str) -> str:
+        '''
+        Generic method to build a log file for any application
+        '''
         try:
             current_time = self.create_timestamp()
             new_dir = str(dir)
@@ -47,6 +60,9 @@ class Toolbag:
             self.excepticon("toolbag.create_logfile()", e)
 
     def create_timestamp(self) -> str:
+        '''
+        Build a timestamp using the current time return formatted string
+        '''
         try:
             import datetime
             ts = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
@@ -55,6 +71,9 @@ class Toolbag:
             self.excepticon("create_timestamp", e)
 
     def get_headers(self, browser) -> Dict:
+        '''
+        User Agent headers for http/s requests
+        '''
         try:
             browser = str(browser)
             headers = {}
@@ -78,6 +97,9 @@ class Toolbag:
             self.excepticon("get_headers", e)
 
     def terminator(self, process: str) -> bool:
+        '''
+        Kill processes with same name as "process" parameter. Attempt to gracefully exit and if no response hard kill it
+        '''
         try:
             from time import sleep
             import subprocess
@@ -114,6 +136,9 @@ class Toolbag:
 
 
     def get_process_count(self, proc_name: str) -> int:
+        '''
+        count the number of processes with input parameter name.
+        '''
         try:
             import subprocess
             cmd = "pgrep " + str(proc_name) + " | wc -l"
@@ -126,9 +151,12 @@ class Toolbag:
                 count = int(count)
                 return count
         except Exception as e:
-            self.excepticon("cleaner.get_number_pids()", e)
+            self.excepticon("get_number_pids()", e)
 
     def color(self, text: str, color: str) -> str:
+        '''
+        Method to color CLI output. Takes string and color and returns same string colored
+        '''
         try:
             import random
             import termcolor
@@ -144,7 +172,8 @@ class Toolbag:
             self.excepticon("color", e)
 
     def check_file_exists(self, filename: str):
-        ''' If filename parameter does not exist, create it.
+        '''
+        If filename parameter does not exist, create it.
         '''
         try:
             import os
@@ -167,7 +196,8 @@ class Toolbag:
             print("ERROR! - In \"check_file_exists\": " + str(e))
 
     def check_dir_exists(self, dir: str) -> bool:
-        '''If directory parameter does not exist, create it.
+        '''
+        If directory parameter does not exist, create it.
         '''
         try:
             import os
@@ -189,6 +219,9 @@ class Toolbag:
             print("ERROR! - In \"check_dir_exists\": " + str(e))
 
     def build_allports_list(self) -> List:
+        '''
+        If all ports are required for port scan return a List of all ports for iteration
+        '''
         try:
             import random
             new_port_list = []
