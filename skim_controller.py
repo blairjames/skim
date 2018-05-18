@@ -17,8 +17,8 @@ class SkimController:
             self.staggering: int = 30
             self.basepath:str = "/root/scripts/skim/output/"
             self.path_to_urls: str = "/root/scripts/skim/master_list_external_domains.txt"
-            self.num_domains: int = skim_utils.SkimUitls().how_many_domains_in_list(self.path_to_urls)
             self.logfile: str = (self.basepath + "log_sites.txt")
+
         except Exception as e:
             print("Error! in SkimController.constructor: " + str(e))
 

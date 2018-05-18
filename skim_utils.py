@@ -75,7 +75,6 @@ class SkimUitls:
         store content and hash for comparison on next pass
         '''
         try:
-            p1 = pc()
             import skim_writer_io
             import skim_hasher
             writer = skim_writer_io.Skim_writer_io().writer
@@ -89,8 +88,6 @@ class SkimUitls:
                    "%%%%%%%%%%~~~~~~~~~~~%%%%%%%%%%".rstrip("\n").rstrip(" ")
                    ,"content")
             writer(url + "~" + str(hashed), "hashes")
-            p2 = pc()
-            self.perf_manage_content = p2 - p1
             return True
         except Exception as e:
             print("Error!! in SkimUitls.manage_content " + str(e))
