@@ -6,6 +6,7 @@ import aiohttp
 import skim_controller
 ctrl = skim_controller.SkimController()
 
+
 class Asink:
 
     async def requester(self, url):
@@ -33,7 +34,6 @@ class Asink:
     async def gen(self):
         tasks = [asyncio.ensure_future(self.requester(u)) for u in self.read_domains()]
         await asyncio.wait(tasks)
-
 
 def main():
     p1 = time.perf_counter()
