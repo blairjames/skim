@@ -45,7 +45,7 @@ class SkimContentCheck:
         except Exception as e:
             print("Error! in SkimContentCheck.get_hash_results: " + str(e))
 
-    def get_dir_name_cmd_builder(self, which_results: str) -> str:
+    def     get_dir_name_cmd_builder(self, which_results: str) -> str:
         '''
         Return a command string to be run by "get_dir_name" according to the "which_results" parameter.
         '''

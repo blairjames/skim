@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 from time import perf_counter
+from typing import List
+import skim_content_check
 
 
 class SkimNotResponding:
@@ -13,11 +15,11 @@ class SkimNotResponding:
         self.perf_read_file: str = ""
         self.perf_clean_list: str = ""
 
-    def read_file(self):
+    def read_file(self, filename: str) -> List:
         p1 = perf_counter()
         non_res_urls = []
         apnd = non_res_urls.append
-        filename = "/root/scripts/skim/output/2018_05_14_21_32_45/not_responding.txt"
+        filename = filename
         with open(filename, "r") as file:
             for f in file.readlines():
                 apnd(f)
@@ -25,7 +27,7 @@ class SkimNotResponding:
         self.perf_read_file = p2 - p1
         return non_res_urls
 
-    def clean_list(self, the_list):
+    def clean_list(self, the_list: List) -> List:
         p1 = perf_counter()
         new_list = []
         apnd = new_list.append
@@ -40,7 +42,13 @@ class SkimNotResponding:
 
 def main():
     new_skim_not_res = SkimNotResponding()
-    file_off_disk = new_skim_not_res.read_file()
+    check = skim_content_check.SkimContentCheck()
+    dirname = skim_content_check.SkimContentCheck().get_dir_name_cmd_builder("most_recent")
+    print("dirname - " + dirname)
+    most_recent_dir = check.get_dir_name("ls " + dirname + "/*not_res*")
+    print("most recent: " + str(most_recent_dir))
+    file_off_disk = new_skim_not_res.read_file(most_recent_dir)
+    print("file off: " + str(file_off_disk))
     clean_list = new_skim_not_res.clean_list(file_off_disk)
     print(new_skim_not_res.perf_read_file)
     print(new_skim_not_res.perf_clean_list)

@@ -7,7 +7,8 @@ class Skim_writer_io:
     '''
     def writer(self, site: str, file_name: str) -> bool:
         try:
-            base_path: str = "/root/scripts/skim/output/"
+            import skim_controller
+            base_path: str = skim_controller.SkimController().basepath
             with open(str(base_path) + str(file_name) + ".txt", "a") as file:
                 file.write(str(site) + "\n")
                 file.close()

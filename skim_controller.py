@@ -15,9 +15,9 @@ class SkimController:
             self.processes: int = 400
             self.http_timeout: int = 60
             self.staggering: int = 30
-            self.basepath:str = "/root/scripts/skim/output/"
-            self.path_to_urls: str = "/root/scripts/skim/master_list_external_domains.txt"
-            self.logfile: str = (self.basepath + "log_sites.txt")
+            self.basepath:str = "/opt/skim/output/"
+            self.path_to_urls: str = "opt/skim/master_list_external_domains.txt"
+            self.logfile: str = (self.basepath + "log.txt")
 
         except Exception as e:
             print("Error! in SkimController.constructor: " + str(e))
@@ -87,7 +87,7 @@ class SkimController:
             import skim_cleaner
             clean = skim_cleaner.SkimCleaner()
             clean.print_counts()
-            clean.move_files("/root/scripts/skim/output/")
+            clean.move_files("/opt/skim/output/")
             return True
         except Exception as e:
             print("Error! in SkimController.display_results: " + str(e))

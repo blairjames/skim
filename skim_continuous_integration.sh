@@ -4,7 +4,7 @@ systemctl stop systemd_monitor.service
 echo "stopping skim.service"
 systemctl stop skim
 echo "Running git pull"
-cd /root/scripts/skim/
+cd /opt/skim/
 /usr/bin/git pull
 /usr/bin/git reset --hard master
 /usr/bin/git pull
