@@ -2,7 +2,6 @@
 
 import skim_utils
 
-#TODO: Add val for first run, no log, no dirs, no output.
 
 class SkimController:
     '''
