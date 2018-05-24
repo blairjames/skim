@@ -2,6 +2,7 @@
 
 import skim_utils
 
+#TODO: Add val for first run, no log, no dirs, no output.
 
 class SkimController:
     '''
@@ -92,6 +93,23 @@ class SkimController:
         except Exception as e:
             print("Error! in SkimController.display_results: " + str(e))
 
+    def does_everything_exist(self):
+        '''
+        check dirs and files exists, if not create them.
+        '''
+        try:
+            util = skim_utils.SkimUitls()
+            base = util.check_dir_exists(self.basepath)
+            urls = util.check_dir_exists(self.path_to_urls)
+            log = util.check_file_exists(self.logfile)
+            if not base or not urls or not log:
+                raise IOError
+        except IOError as i:
+            print("IO Error! - controller.does_everything_exist.Checking_files_creating_if_not_exists: " + str(i))
+        except Exception as e:
+            print("Error! - controller.does_everything_exist: " + str(e))
+
+
 def main():
     '''
     Execution flow is controlled from here.
@@ -101,12 +119,18 @@ def main():
     if not controller.is_internet_available:
         lint("\nError! - Check internet connectivity\n")
         exit(1)
+    #check dirs and files exists, if not create them.
+    if not controller.does_everything_exist():
+        lint("\nIO Error! - File does not exist.")
+        exit(1)
     else:
         import skim_reader_io
         reader = skim_reader_io.SkimReader().fetch_domain_list
         controller.clean_and_print_banner()
         list_of_domains = reader(controller.path_to_urls)
         controller.parallelize(list_of_domains)
+
+
 
 if __name__ == '__main__':
     main()
