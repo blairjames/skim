@@ -92,17 +92,25 @@ class SkimController:
         except Exception as e:
             print("Error! in SkimController.display_results: " + str(e))
 
-    def does_everything_exist(self):
+    def does_everything_exist(self) -> bool:
         '''
         check dirs and files exists, if not create them.
         '''
         try:
             util = skim_utils.SkimUitls()
+            print(str(self.basepath))
+            print(str(self.path_to_urls))
+            print(str(self.logfile))
             base = util.check_dir_exists(self.basepath)
-            urls = util.check_dir_exists(self.path_to_urls)
+            print(str(base))
+            urls = util.check_file_exists(self.path_to_urls)
+            print(str(urls))
             log = util.check_file_exists(self.logfile)
+            print(str(log))
             if not base or not urls or not log:
                 raise IOError
+            else:
+                return True
         except IOError as i:
             print("IO Error! - controller.does_everything_exist.Checking_files_creating_if_not_exists: " + str(i))
         except Exception as e:
@@ -128,8 +136,6 @@ def main():
         controller.clean_and_print_banner()
         list_of_domains = reader(controller.path_to_urls)
         controller.parallelize(list_of_domains)
-
-
 
 if __name__ == '__main__':
     main()
