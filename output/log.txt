@@ -1,6 +1,4 @@
-2018_05_25_18_10_25 : - 
-IO Error! - File does not exist.
-2018_05_25_18_12_40 : - 
-IO Error! - File does not exist.
-2018_05_25_18_13_42 : - 
-IO Error! - File does not exist.
+2018_05_25_19_00_41 : - [33mNumber of domains before whitelisting: 1808[0m
+2018_05_25_19_00_42 : - [33mNumber of domains after  whitelisting: 1666[0m
+
+

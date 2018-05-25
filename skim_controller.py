@@ -16,7 +16,7 @@ class SkimController:
             self.http_timeout: int = 60
             self.staggering: int = 30
             self.basepath:str = "/opt/skim/output/"
-            self.path_to_urls: str = "opt/skim/master_list_external_domains.txt"
+            self.path_to_urls: str = "/opt/skim/master_list_external_domains.txt"
             self.logfile: str = (self.basepath + "log.txt")
 
         except Exception as e:
