@@ -52,7 +52,7 @@ class SkimCleaner:
         try:
             import skim_controller
             import skim_utils
-            num_domains: int = skim_controller.SkimController().num_domains
+            num_domains: int = skim_controller.SkimController().number_of_domains
             lint = skim_utils.SkimUitls().lint
             lint("***************************************")
             lint("Total Sites: " + str(num_domains))

@@ -15,6 +15,7 @@ class SkimController:
             self.processes: int = 400
             self.http_timeout: int = 60
             self.staggering: int = 30
+            self.number_of_domains: int = 0
             self.basepath:str = "/opt/skim/output/"
             self.path_to_urls = "/opt/skim/master_list_external_domains.txt"
             self.logfile: str = (self.basepath + "log.txt")
@@ -135,6 +136,7 @@ def main():
         reader = skim_reader_io.SkimReader().fetch_domain_list
         controller.clean_and_print_banner()
         list_of_domains = reader(controller.path_to_urls)
+        controller.number_of_domains = len(list_of_domains)
         controller.parallelize(list_of_domains)
 
 if __name__ == '__main__':

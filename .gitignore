@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 *.idea*
 master_list*.txt
-output/*
+*/output/*
 
 # C extensions
 #*.so
