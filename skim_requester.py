@@ -34,7 +34,7 @@ class SkimRequester:
                 if not cms.is_it_sharepoint(url, res.headers):
                     if not cms.is_it_wordpress(url, res.headers):
                         if not cms.is_it_drupal(url, res.headers, res.text):
-                            cms.is_it_joomla(url, res.headers)
+                            cms.is_it_joomla(url, res.headers, res.text)
                         else:
                             pass
                     else:
