@@ -1,0 +1,418 @@
+2018_06_20_23_14_55 : - [33mNumber of domains before whitelisting: 1808[0m
+2018_06_20_23_14_55 : - [33mNumber of domains after  whitelisting: 1666[0m
+
+
+2018_06_20_23_15_04 : - http://naplantestschool.eq.edu.au - site not responding
+
+2018_06_20_23_15_05 : - http://closures.det.qld.gov.au  - URL has an invalid label
+
+2018_06_20_23_15_06 : - http://fed.education.qld.gov.au - site not responding
+
+2018_06_20_23_15_06 : - http://bilaieec.eq.edu.au - site not responding
+
+2018_06_20_23_15_06 : - http://dear.eq.edu.au - site not responding
+
+2018_06_20_23_15_07 : - http://codingcounts.com.au  - site not responding
+
+2018_06_20_23_15_07 : - http://mywebsite.eq.edu.au - site not responding
+
+2018_06_20_23_15_07 : - http://ibroadcast.eq.edu.au - site not responding
+
+2018_06_20_23_15_09 : - http://unilearn.edu.au - site not responding
+
+2018_06_20_23_15_11 : - http://education.qld.gov.au/projects/educationviews !!! HTTPError !!! 404 Client Error: Not Found for url: http://education.qld.gov.au/projects/educationviews
+
+2018_06_20_23_15_13 : - http://proxy.education.qld.gov.au - site not responding
+
+2018_06_20_23_15_15 : - http://meteast.eq.edu.au - site not responding
+
+2018_06_20_23_15_15 : - http://qeducsbapi.education.qld.gov.au - site not responding
+
+2018_06_20_23_15_15 : - http://pcm-high.eq.edu.au - site not responding
+
+2018_06_20_23_15_15 : - http://globalprojectspaces.com.au - site not responding
+
+2018_06_20_23_15_16 : - http://oslp.education.qld.gov.au - site not responding
+
+2018_06_20_23_15_16 : - http://c2c.eq.edu.au !!! 401 Auth required !!! 401 Client Error: Authorization Required for url: https://det-school.eq.edu.au/schools/index.php
+
+2018_06_20_23_15_16 : - http://domainnameadmin.dete.qld.gov.au - site not responding
+
+2018_06_20_23_15_17 : - http://mediasite5.eq.edu.au !!! 403 Forbidden !!! 403 Client Error: Forbidden for url: http://mediasite5.eq.edu.au/
+
+2018_06_20_23_15_18 : - http://thelpglobal.com - site not responding
+
+2018_06_20_23_15_18 : - http://coastaldistrictsports.eq.edu.au - site not responding
+
+2018_06_20_23_15_18 : - http://dete.edu.au - site not responding
+
+2018_06_20_23_15_18 : - http://sbs-train.eq.edu.au - site not responding
+
+2018_06_20_23_15_19 : - http://tannymorss.eq.edu.au - site not responding
+
+2018_06_20_23_15_19 : - http://onechannel.eq.edu.au - site not responding
+
+2018_06_20_23_15_19 : - http://lpglobal.com.au - site not responding
+
+2018_06_20_23_15_19 : - http://ssc.eq.edu.au - site not responding
+
+2018_06_20_23_15_19 : - http://qparents.org.au - site not responding
+
+2018_06_20_23_15_19 : - http://coenss.eq.edu.au !!! HTTPError !!! 404 Client Error: Not Found for url: http://coenss.eq.edu.au/
+
+2018_06_20_23_15_20 : - http://advancing-education.com - site not responding
+
+2018_06_20_23_15_21 : - http://ministerialindustryCommission.biz - site not responding
+
+2018_06_20_23_15_21 : - http://advancingeducation.info - site not responding
+
+2018_06_20_23_15_22 : - http://qeducsbapi.sit.education.qld.gov.au - site not responding
+
+2018_06_20_23_15_24 : - http://qschools.net.au - site not responding
+
+2018_06_20_23_15_24 : - http://jobsqld.net - site not responding
+
+2018_06_20_23_15_24 : - http://myhr-pct.dete.qld.gov.au - Connection Error !!! 
+
+2018_06_20_23_15_27 : - http://wfs13.eq.edu.au - site not responding
+
+2018_06_20_23_15_27 : - http://advancingeducation.com.au  - site not responding
+
+2018_06_20_23_15_28 : - http://ministerialindustryCommission.net - site not responding
+
+2018_06_20_23_15_28 : - http://qparent.org - site not responding
+
+2018_06_20_23_15_28 : - http://stbernardss.eq.edu.au    - site not responding
+
+2018_06_20_23_15_28 : - http://sde.eq.edu.au/bsde - site not responding
+
+2018_06_20_23_15_29 : - http://qstudents.net - site not responding
+
+2018_06_20_23_15_30 : - http://ministerialindustryCommission.info - site not responding
+
+2018_06_20_23_15_30 : - http://qparents.net - site not responding
+
+2018_06_20_23_15_32 : - http://remote.qed.qld.gov.au - site not responding
+
+2018_06_20_23_15_32 : - http://qschools.com.au - site not responding
+
+2018_06_20_23_15_33 : - http://onlinelearning.qld.gov.au - site not responding
+
+2018_06_20_23_15_34 : - http://miis.eq.edu.au - site not responding
+
+2018_06_20_23_15_34 : - http://naplanonline.info - site not responding
+
+2018_06_20_23_15_34 : - http://bribieislandshs.eq.edu.au  - site not responding
+
+2018_06_20_23_15_35 : - http://smartfuture.qld.gov.au - site not responding
+
+2018_06_20_23_15_35 : - http://ministerialindustryCommission.org - site not responding
+
+2018_06_20_23_15_35 : - http://impact.edu.au - Revoked - site not responding
+
+2018_06_20_23_15_36 : - http://tsustudenttracking.eq.edu.au !!! 403 Forbidden !!! 403 Client Error: Forbidden for url: http://tsustudenttracking.eq.edu.au/
+
+2018_06_20_23_15_36 : - http://mediasite.eq.edu.au !!! 403 Forbidden !!! 403 Client Error: Forbidden for url: http://mediasite.eq.edu.au/
+
+2018_06_20_23_15_36 : - http://build.qparents.qld.gov.au - site not responding
+
+2018_06_20_23_15_38 : - http://codingcounts.net - site not responding
+
+2018_06_20_23_15_38 : - http://guest.det.qld.gov.au - site not responding
+
+2018_06_20_23_15_38 : - http://stss.dete.qld.gov.au - site not responding
+
+2018_06_20_23_15_38 : - http://naplanonline.org - site not responding
+
+2018_06_20_23_15_38 : - http://codingcounts.org - site not responding
+
+2018_06_20_23_15_38 : - http://files.det.qld.gov.au - site not responding
+
+2018_06_20_23_15_39 : - http://qstudents.org - site not responding
+
+2018_06_20_23_15_40 : - http://meteast.com.au - site not responding
+
+2018_06_20_23_15_40 : - http://byo.eq.edu.au - site not responding
+
+2018_06_20_23_15_41 : - http://trainingombudsman.net.au - site not responding
+
+2018_06_20_23_15_42 : - http://ictcommunity.eq.edu.au !!! 401 Auth required !!! 401 Client Error: Authorization Required for url: http://ictcommunity.eq.edu.au/
+
+2018_06_20_23_15_42 : - http://oslptrain.prod.eq.edu.au - site not responding
+
+2018_06_20_23_15_43 : - http://pcm-student.eq.edu.au - site not responding
+
+2018_06_20_23_15_43 : - http://globallearningplace.com.au - site not responding
+
+2018_06_20_23_15_43 : - http://globallearningplace.com - site not responding
+
+2018_06_20_23_15_43 : - http://gc2018embracelearning.edu.au - site not responding
+
+2018_06_20_23_15_44 : - http://ptl13.det.qld.gov.au - site not responding
+
+2018_06_20_23_15_45 : - http://trainingombudsman.com.au - site not responding
+
+2018_06_20_23_15_45 : - http://tms-test.training.qld.gov.au - site not responding
+
+2018_06_20_23_15_45 : - http://enterpriseenrolment.eq.edu.au - site not responding
+
+2018_06_20_23_15_45 : - http://skillsqueensland.com.au - site not responding
+
+2018_06_20_23_15_45 : - http://hote.eq.edu.au - site not responding
+
+2018_06_20_23_15_45 : - http://deebingheightss.eq.edu.au - site not responding
+
+2018_06_20_23_15_46 : - http://qteachers.com.au - site not responding
+
+2018_06_20_23_15_46 : - http://uatseq.qparents.qld.gov.au - site not responding
+
+2018_06_20_23_15_47 : - http://research.det.qld.gov.au  - site not responding
+
+2018_06_20_23_15_48 : - http://advancingeducation.net.au  - site not responding
+
+2018_06_20_23_15_48 : - http://cabdistrictsport.eq.edu.au - site not responding
+
+2018_06_20_23_15_49 : - http://learningplace.com.au  - site not responding
+
+2018_06_20_23_15_49 : - http://admin.mis.eq.edu.au - site not responding
+
+2018_06_20_23_15_49 : - http://naplanonline.org.au - site not responding
+
+2018_06_20_23_15_51 : - http://traccclaims.training.qld.gov.au - site not responding
+
+2018_06_20_23_15_51 : - http://qlearn.com.au - site not responding
+
+2018_06_20_23_15_51 : - http://pcm-high.education.qld.gov.au - site not responding
+
+2018_06_20_23_15_51 : - http://bullyingnoway.net - site not responding
+
+2018_06_20_23_15_51 : - http://qteacher.com.au - site not responding
+
+2018_06_20_23_15_51 : - http://advancingeducation.org.au  - site not responding
+
+2018_06_20_23_15_52 : - http://gympiettc.eq.edu.au - site not responding
+
+2018_06_20_23_15_52 : - http://hopevaless.eq.edu.au !!! HTTPError !!! 404 Client Error: Not Found for url: http://hopevaless.eq.edu.au/
+
+2018_06_20_23_15_53 : - http://sictsd.det.qld.gov.au - site not responding
+
+2018_06_20_23_15_53 : - http://qparents.org - site not responding
+
+2018_06_20_23_15_55 : - http://hrcr.eq.edu.au - site not responding
+
+2018_06_20_23_15_55 : - http://springwoodroadss.eq.edu.au !!! HTTPError !!! 404 Client Error:  for url: https://springwoodroadss.eq.edu.au/
+
+2018_06_20_23_15_55 : - http://remote.dete.qld.gov.au - site not responding
+
+2018_06_20_23_15_56 : - http://acc.eq.edu.au - site not responding
+
+2018_06_20_23_15_56 : - http://iconnect.eq.edu.au - site not responding
+
+2018_06_20_23_15_57 : - http://ra.eq.edu.au - site not responding
+
+2018_06_20_23_15_57 : - http://oneframework.det.qld.gov.au !!! 403 Forbidden !!! 403 Client Error: Forbidden for url: https://oneframework.det.qld.gov.au/
+
+2018_06_20_23_15_57 : - http://tac.dete.qld.gov.au - site not responding
+
+2018_06_20_23_15_58 : - http://qparent.org.au - site not responding
+
+2018_06_20_23_15_59 : - http://dete.qld.edu.au - site not responding
+
+2018_06_20_23_15_59 : - http://trainseq.qparents.qld.gov.au - site not responding
+
+2018_06_20_23_15_59 : - http://mishelp.eq.edu.au - site not responding
+
+2018_06_20_23_15_59 : - http://census.earlychildhood.qld.gov.au  - URL has an invalid label
+
+2018_06_20_23_15_59 : - http://ealdhub.edu.au - site not responding
+
+2018_06_20_23_15_59 : - http://experiencepays.qld.gov.au - site not responding
+
+2018_06_20_23_16_00 : - http://testseq.qparents.qld.gov.au - site not responding
+
+2018_06_20_23_16_01 : - http://impact.edu.au  - site not responding
+
+2018_06_20_23_16_01 : - http://enterpriseregistration.eq.edu.au !!! HTTPError !!! 404 Client Error: Not Found for url: http://enterpriseregistration.eq.edu.au/
+
+2018_06_20_23_16_02 : - http://wfs10.eq.edu.au - site not responding
+
+2018_06_20_23_16_02 : - http://train.qparents.qld.gov.au - site not responding
+
+2018_06_20_23_16_02 : - http://qstudents.org.au - site not responding
+
+2018_06_20_23_16_03 : - http://naplanonline.net - site not responding
+
+2018_06_20_23_16_03 : - http://sip.eq.edu.au - site not responding
+
+2018_06_20_23_16_03 : - http://farnorthqld.eq.edu.au - site not responding
+
+2018_06_20_23_16_04 : - http://pcm-staff.eq.edu.au - site not responding
+
+2018_06_20_23_16_04 : - http://nhwbroadbeach20.org.au - site not responding
+
+2018_06_20_23_16_04 : - http://ftp.eq.edu.au - Connect Timeout!!! HTTPConnectionPool(host='ftp.eq.edu.au', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7f6f57576c50>, 'Connection to ftp.eq.edu.au timed out. (connect timeout=60)'))
+
+2018_06_20_23_16_04 : - http://services.eq.edu.au !!! HTTPError !!! 401 Client Error: Unauthorized for url: https://services.eq.edu.au/
+
+2018_06_20_23_16_04 : - http://moess.eq.edu.au - site not responding
+
+2018_06_20_23_16_06 : - http://genin.qld.edu.au - site not responding
+
+2018_06_20_23_16_06 : - http://toowoombashsnewcampus.eq.edu.au - site not responding
+
+2018_06_20_23_16_07 : - http://dev.eq.edu.au - site not responding
+
+2018_06_20_23_16_07 : - http://caboeastss.eq.edu.au - site not responding
+
+2018_06_20_23_16_08 : - http://qparent.com.au - site not responding
+
+2018_06_20_23_16_08 : - http://qstudents.com.au - site not responding
+
+2018_06_20_23_16_08 : - http://pcm-medium.eq.edu.au - site not responding
+
+2018_06_20_23_16_08 : - http://globalprojectspaces.com - site not responding
+
+2018_06_20_23_16_09 : - http://sqw-uat.training.qld.gov.au  - site not responding
+
+2018_06_20_23_16_09 : - http://educationq.com.au - site not responding
+
+2018_06_20_23_16_09 : - http://eip.dete.qld.gov.au - site not responding
+
+2018_06_20_23_16_09 : - http://rbssc.eq.edu.au  - site not responding
+
+2018_06_20_23_16_09 : - http://ideasgenerator.det.qld.gov.au !!! 403 Forbidden !!! 403 Client Error: Forbidden for url: https://ideasgenerator.det.qld.gov.au/a/index
+
+2018_06_20_23_16_11 : - http://helehillss.eq.edu.au - site not responding
+
+2018_06_20_23_16_12 : - http://iaim.eq.edu.au - site not responding
+
+2018_06_20_23_16_14 : - http://qlearner.com.au - site not responding
+
+2018_06_20_23_16_14 : - http://det-school.eq.edu.au !!! 401 Auth required !!! 401 Client Error: Authorization Required for url: https://det-school.eq.edu.au/schools/index.php
+
+2018_06_20_23_16_14 : - http://caprrocksde.eq.edu.au !!! HTTPError !!! 404 Client Error:  for url: https://caprrocksde.eq.edu.au/
+
+2018_06_20_23_16_14 : - http://graphs.eq.edu.au !!! HTTPError !!! 404 Client Error: Not Found for url: http://graphs.eq.edu.au/
+
+2018_06_20_23_16_16 : - http://forms.det.qld.gov.au - site not responding
+
+2018_06_20_23_16_17 : - http://myapprenticeship.training.qld.gov.au  - site not responding
+
+2018_06_20_23_16_18 : - http://qeducation.eq.edu.au - site not responding
+
+2018_06_20_23_16_18 : - http://sunshinecoast.eq.edu.au - site not responding
+
+2018_06_20_23_16_19 : - http://advancingeducation.net - site not responding
+
+2018_06_20_23_16_19 : - http://hostmaster.deta.qld.gov.au - site not responding
+
+2018_06_20_23_16_21 : - http://ics.eq.edu.au - Connect Timeout!!! HTTPConnectionPool(host='ics.eq.edu.au', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7f6f57533630>, 'Connection to ics.eq.edu.au timed out. (connect timeout=60)'))
+
+2018_06_20_23_16_22 : - http://tms-uat.training.qld.gov.au  - site not responding
+
+2018_06_20_23_16_22 : - http://oslp.prod.eq.edu.au - site not responding
+
+2018_06_20_23_16_23 : - http://stst.dete.qld.gov.au - site not responding
+
+2018_06_20_23_16_23 : - http://dirqgn.education.qld.gov.au - Connect Timeout!!! HTTPConnectionPool(host='dirqgn.education.qld.gov.au', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7f6f575177b8>, 'Connection to dirqgn.education.qld.gov.au timed out. (connect timeout=60)'))
+
+2018_06_20_23_16_25 : - http://iaimactionschools.eq.edu.au - site not responding
+
+2018_06_20_23_16_25 : - http://mmc.eq.edu.au - site not responding
+
+2018_06_20_23_16_26 : - http://qparent.net - site not responding
+
+2018_06_20_23_16_26 : - http://employment.qld.gov.au - site not responding
+
+2018_06_20_23_16_26 : - http://coding-counts.com  - site not responding
+
+2018_06_20_23_16_26 : - http://oecec.info - site not responding
+
+2018_06_20_23_16_27 : - http://myfacilities.dete.qld.gov.au !!! 403 Forbidden !!! 403 Client Error: Forbidden for url: https://myfacilities.dete.qld.gov.au/
+
+2018_06_20_23_16_27 : - http://qteacher.eq.edu.au - site not responding
+
+2018_06_20_23_16_27 : - http://myhr-ess.dete.qld.gov.au - site not responding
+
+2018_06_20_23_16_27 : - http://vpsonline.training.qld.gov.au - site not responding
+
+2018_06_20_23_16_28 : - http://forms.education.qld.gov.au - site not responding
+
+2018_06_20_23_16_29 : - http://train.qparents.qld.edu.au  - site not responding
+
+2018_06_20_23_16_33 : - http://newprimaryschoolincoomera.eq.edu.au - site not responding
+
+2018_06_20_23_16_33 : - http://eqstats.eq.edu.au - site not responding
+
+2018_06_20_23_16_35 : - http://bundambaltc.eq.edu.au - site not responding
+
+2018_06_20_23_16_35 : - http://seq.qparents.qld.gov.au - site not responding
+
+2018_06_20_23_16_36 : - http://goforgold.qld.edu.au - site not responding
+
+2018_06_20_23_16_38 : - http://qparent.net.au - site not responding
+
+2018_06_20_23_16_39 : - http://trainingombudsman.org.au - site not responding
+
+2018_06_20_23_16_43 : - http://qschool.com.au - site not responding
+
+2018_06_20_23_16_48 : - http://townsvilleprimaryschoolsport.eq.edu.au - site not responding
+
+2018_06_20_23_17_00 : - http://skillingsolutions.com.au - Connect Timeout!!! HTTPConnectionPool(host='skillingsolutions.com.au', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7f6f56c96fd0>, 'Connection to skillingsolutions.com.au timed out. (connect timeout=60)'))
+
+2018_06_20_23_17_08 : - http://peerreviewer.eq.edu.au - Connect Timeout!!! HTTPConnectionPool(host='peerreviewer.eq.edu.au', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7f6f56c9b1d0>, 'Connection to peerreviewer.eq.edu.au timed out. (connect timeout=60)'))
+
+2018_06_20_23_17_18 : - http://qstar-ssrs.det.qld.gov.au - Connect Timeout!!! HTTPConnectionPool(host='qstar-ssrs.det.qld.gov.au', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7f6f5753b208>, 'Connection to qstar-ssrs.det.qld.gov.au timed out. (connect timeout=60)'))
+
+2018_06_20_23_17_27 : - http://spsec.det.qld.gov.au - Connect Timeout!!! HTTPConnectionPool(host='spsec.det.qld.gov.au', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7f6f56cb3438>, 'Connection to spsec.det.qld.gov.au timed out. (connect timeout=60)'))
+
+2018_06_20_23_17_33 : - http://reporting.eq.edu.au - Connect Timeout!!! HTTPConnectionPool(host='reporting.eq.edu.au', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7f6f56ca8710>, 'Connection to reporting.eq.edu.au timed out. (connect timeout=60)'))
+
+2018_06_20_23_17_39 : - http://eraauthsvc.dete.qld.gov.au - Connect Timeout!!! HTTPConnectionPool(host='eraauthsvc.dete.qld.gov.au', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7f6f57536dd8>, 'Connection to eraauthsvc.dete.qld.gov.au timed out. (connect timeout=60)'))
+
+2018_06_20_23_17_39 : - CMD for file name: ls -td /opt/skim/output/201* | head -n 1
+2018_06_20_23_17_39 : - /opt/skim/output/2018_06_20_23_14_50
+2018_06_20_23_17_39 : - CMD for file name: ls -td /opt/skim/output/201* | head -n 2 | tail -n 1
+2018_06_20_23_17_39 : - /opt/skim/output/2018_06_20_23_12_05
+2018_06_20_23_17_39 : - File cmd: ls -td /opt/skim/output/2018_06_20_23_14_50/*hash*
+2018_06_20_23_17_39 : - File name: /opt/skim/output/2018_06_20_23_14_50/hashes.txt
+
+2018_06_20_23_17_39 : - File cmd: ls -td /opt/skim/output/2018_06_20_23_12_05/*hash*
+2018_06_20_23_17_39 : - File name: /opt/skim/output/2018_06_20_23_12_05/hashes.txt
+
+2018_06_20_23_17_39 : - File cmd: ls -td /opt/skim/output/2018_06_20_23_14_50/*content*
+2018_06_20_23_17_39 : - File name: /opt/skim/output/2018_06_20_23_14_50/content.txt
+
+2018_06_20_23_17_39 : - File cmd: ls -td /opt/skim/output/2018_06_20_23_12_05/*content*
+2018_06_20_23_17_39 : - File name: /opt/skim/output/2018_06_20_23_12_05/content.txt
+
+2018_06_20_23_17_39 : - 
+last_hash_results_file_name: /opt/skim/output/2018_06_20_23_14_50/hashes.txt
+ Number of results: 1481
+2018_06_20_23_17_39 : - 
+second_last_hash_results_file_name: /opt/skim/output/2018_06_20_23_12_05/hashes.txt
+ Number of results: 1481
+2018_06_20_23_17_39 : - 
+last_content_file_name: /opt/skim/output/2018_06_20_23_14_50/content.txt
+
+2018_06_20_23_17_39 : - 
+second_last_content_file_name: /opt/skim/output/2018_06_20_23_12_05/content.txt
+
+2018_06_20_23_17_39 : - 
+All urls have matching hash.
+
+2018_06_20_23_17_39 : - 
+Execution time: 2:44
+
+2018_06_20_23_17_39 : - 
+Now sleeping for 5 seconds.
+
+2018_06_20_23_17_39 : - ***************************************
+2018_06_20_23_17_39 : - Total Sites: 1808
+2018_06_20_23_17_39 : - Sites up: 1493
+2018_06_20_23_17_39 : - Sites not responding: 165
+2018_06_20_23_17_39 : - Sharepoint Sites: 1327
+2018_06_20_23_17_39 : - Wordpress Sites: 21
+2018_06_20_23_17_39 : - Drupal Sites: 1
+2018_06_20_23_17_39 : - Joomla Sites: None discovered.
+2018_06_20_23_17_39 : - ***************************************

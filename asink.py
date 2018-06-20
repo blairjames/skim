@@ -11,41 +11,34 @@ class Asink:
 
     async def requester(self, url):
         try:
-            p1 = time.perf_counter()
             session = aiohttp.ClientSession()
-            async with session.get(url, timeout=180) as resp:
+            async with session.get(url, timeout=20) as resp:
                 print(str(url) + " : " + str(resp.status))
-            p2 = time.perf_counter()
-            print(p2-p1)
-            session.close()
+                session.close()
         except Exception as e:
-            print(str(url) + " error: " + str(e))
+            print(str(url) + " Error!!: " + str(e))
 
     def read_domains(self):
         dir = ctrl.path_to_urls
-        doms = []
-        ap = doms.append
         with open(dir, "r") as url_file:
-            for url in url_file.read().splitlines():
-                ap("http://" + str(url))
-            url_file.close()
+            doms = [str("https://" + url) for url in url_file.read().splitlines()]
         return doms
 
     async def gen(self):
-        tasks = [asyncio.ensure_future(self.requester(u)) for u in self.read_domains()]
+        tasks = [asyncio.ensure_future(self.requester(str(u))) for u in self.read_domains()]
         await asyncio.wait(tasks)
 
-def main():
+async def main():
     p1 = time.perf_counter()
     a = Asink()
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(a.gen())
-    loop.close()
+    await a.gen()
     p2 = time.perf_counter()
     print("Total Time: " + str(p2 - p1))
 
 
 if __name__ == '__main__':
-    main()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
+    loop.close()
 
 

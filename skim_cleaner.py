@@ -45,6 +45,14 @@ class SkimCleaner:
         except Exception as e:
             print("Error!! in Cleaner.count_sites(): " + str(e))
 
+    def get_number_of_domains(self):
+        try:
+            import skim_controller
+            with open(skim_controller.SkimController().path_to_urls) as file:
+                return sum(1 for _ in file.readlines())
+        except Exception as e:
+            print("Error! in get_number_of_domains: " + str(e))
+
     def print_counts(self):
         '''
         Print the number of sites in each category
@@ -52,10 +60,10 @@ class SkimCleaner:
         try:
             import skim_controller
             import skim_utils
-            num_domains: int = skim_controller.SkimController().number_of_domains
+            import skim_reader_io
             lint = skim_utils.SkimUitls().lint
             lint("***************************************")
-            lint("Total Sites: " + str(num_domains))
+            lint("Total Sites: " + str(self.get_number_of_domains()))
             lint("Sites up: " + str(self.count_sites("up.txt")))
             lint("Sites not responding: " + str(self.count_sites("not_responding.txt")))
             lint("Sharepoint Sites: " + str(self.count_sites("sharepoint.txt")))

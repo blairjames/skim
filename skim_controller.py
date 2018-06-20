@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import skim_utils
-import skim_reader_io
 
 
 class SkimController:
@@ -19,7 +18,6 @@ class SkimController:
             self.basepath:str = "/opt/skim/output/"
             self.path_to_urls = "/opt/skim/master_list_external_domains.txt"
             self.logfile: str = (self.basepath + "log.txt")
-            self.number_of_domains: int = len(skim_reader_io.SkimReader().fetch_domain_list(self.path_to_urls))
 
         except Exception as e:
             print("Error! in SkimController.constructor: " + str(e))
@@ -137,7 +135,6 @@ def main():
         reader = skim_reader_io.SkimReader().fetch_domain_list
         controller.clean_and_print_banner()
         list_of_domains = reader(controller.path_to_urls)
-        controller.number_of_domains = len(list_of_domains)
         controller.parallelize(list_of_domains)
 
 if __name__ == '__main__':
