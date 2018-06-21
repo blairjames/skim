@@ -2,6 +2,9 @@
 
 import skim_utils
 
+#TODO: Get web server version and CVE check.
+#wpscan etc
+
 
 class SkimController:
     '''
