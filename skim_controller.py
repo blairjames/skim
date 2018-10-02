@@ -15,7 +15,7 @@ class SkimController:
         Controller Constructor - Set instance attributes here.
         '''
         try:
-            self.processes: int = 256
+            self.processes: int = 32
             self.http_timeout: int = 60
             self.staggering: int = 20
             self.basepath:str = "/opt/skim/output/"
