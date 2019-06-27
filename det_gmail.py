@@ -2,23 +2,17 @@
 
 
 class Gmail():
-    '''
-    Change recipients in get_recipients to control who the email is delivered to,
-    add google app password to get_api_key and email account name to get_account_name.
-    Blair 20180305
-    '''
 
     def get_recipients(self):
-        recipients = ["opsec.infomailer@gmail.com", "Adam.LEE@qed.qld.gov.au",
-                      "Adam.HARDEN@qed.qld.gov.au", "Blair.JAMES@qed.qld.gov.au"]
+        recipients = "your recipients"
         return recipients
 
     def get_api_key(self):
-        key = "kswtrnhibriwjbdq"
+        key = "xxxxx"
         return key
 
     def get_email_account(self):
-        account = "opsec.infomailer@gmail.com"
+        account = "your gmail"
         return account
 
     def sendFile(self, subject, file):
