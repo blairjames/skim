@@ -59,7 +59,6 @@ class Hasher():
             "\"SourceId\"",
             "PingFed",
             "authorization.ping",
-            "<title>Department of Education, Training and Employment</title>",
             "__RequestVerificationToken",
             "WebPartWPQ5",
             "autoplay\" id=\"",

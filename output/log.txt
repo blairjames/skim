@@ -1,6 +1,0 @@
-2018_10_02_18_36_29 : - [33mNumber of domains before whitelisting: 1808[0m
-2018_10_02_18_36_30 : - [33mNumber of domains after  whitelisting: 1666[0m
-
-
-2018_10_02_18_36_42 : - http://rbssc.eq.edu.au  - site not responding
-
