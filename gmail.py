@@ -12,7 +12,7 @@ class Gmail():
             filetxt = open(file, "r")
             msgtext = MIMEText(filetxt.read(), "plain")
             to = "Alerts"
-            recipients = ["blairdjames@gmail.com"]
+            recipients = ["@gmail.com"]
             msg = MIMEMultipart()
             msg['To'] = to
             msg['From'] = "Alerts"
