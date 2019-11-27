@@ -21,8 +21,8 @@ class Gmail():
             filetxt.close()
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
-            server.login("blairdjames@gmail.com", "nowudwjamyzncmxr")  # Add Google App password to login method
-            server.sendmail("blairdjames@gmail.com", recipients, msg.as_string())
+            server.login("@gmail.com", "xxx")  # Add Google App password to login method
+            server.sendmail("@gmail.com", recipients, msg.as_string())
             server.quit()
             print("Gmail sendFile completed successfully.\n")
             return True
@@ -38,7 +38,7 @@ class Gmail():
         try:
             msgtext = MIMEText(message, "plain")
             to = "Alerts"
-            recipients = ["blairdjames@gmail.com"]
+            recipients = ["@gmail.com"]
             msg = MIMEMultipart()
             msg['To'] = to
             msg['From'] = "Alerts"
@@ -46,8 +46,8 @@ class Gmail():
             msg.attach(msgtext)
             server = smtplib.SMTP('smtp.gmail.com', 587)
             server.starttls()
-            server.login("blairdjames@gmail.com", "nowudwjamyzncmxr")
-            server.sendmail("blairdjames@gmail.com", recipients, msg.as_string())
+            server.login("@gmail.com", "xxx")
+            server.sendmail("@gmail.com", recipients, msg.as_string())
             server.quit()
             print("Gmail sendText completed successfully.\n")
             return True
